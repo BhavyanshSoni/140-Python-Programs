@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "author": "Bhavyansh",
+        "content": "HELLLO BRUHHH",
+        "likes": 1,
+        "liked_by": [
+            "Bhavyansh"
+        ]
+    }
+]

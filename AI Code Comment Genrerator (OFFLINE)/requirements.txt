@@ -1,0 +1,18 @@
+# AI Code Comment Generator (Offline) - Requirements
+# This project uses only standard library modules, so no external dependencies are required.
+# However, if you want to enhance the functionality, you can add these optional packages:
+
+# For enhanced code analysis (optional)
+# ast-comments>=1.0.0
+
+# For better type checking (optional)
+# mypy>=1.0.0
+
+# For testing (optional)
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
+
+# For development (optional)
+# black>=22.0.0
+# flake8>=5.0.0
+# isort>=5.0.0 

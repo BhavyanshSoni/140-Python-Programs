@@ -1,0 +1,17 @@
+{
+  "required_fields": ["id", "name", "email"],
+  "transformations": {
+    "name": "uppercase",
+    "email": "lowercase",
+    "age": "int"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "userdb"
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "app.log"
+  }
+} 

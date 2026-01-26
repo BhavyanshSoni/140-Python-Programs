@@ -1,0 +1,4 @@
+Name -> Free Five Cold
+Tube, Tablet or Syrup -> Ta
+Disease -> Cold
+

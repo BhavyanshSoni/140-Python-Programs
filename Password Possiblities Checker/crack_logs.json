@@ -1,0 +1,80 @@
+[
+    {
+        "password": "147896523",
+        "type": "Pattern",
+        "attempts": 1000001,
+        "time": 2.46
+    },
+    {
+        "password": "7586",
+        "type": "Pattern",
+        "attempts": 17216,
+        "time": 0.03
+    },
+    {
+        "password": "2149",
+        "type": "Pattern",
+        "attempts": 2835,
+        "time": 0.0
+    },
+    {
+        "password": "78536",
+        "type": "Pattern",
+        "attempts": 29254,
+        "time": 0.05
+    },
+    {
+        "password": "979899",
+        "type": "PIN",
+        "attempts": 1000001,
+        "time": 1.2
+    },
+    {
+        "password": "753126489",
+        "type": "Pattern",
+        "attempts": 1000001,
+        "time": 1.54
+    },
+    {
+        "password": "YOKOSO WATASHI NO SOUL SOCIETY",
+        "type": "Typed",
+        "attempts": 1000001,
+        "time": 3.49
+    },
+    {
+        "password": "SUIIIIIIIIIIIIIIIIIIIIIIIII",
+        "type": "Typed",
+        "attempts": 1000001,
+        "time": 3.12
+    },
+    {
+        "password": "SONN GOKU",
+        "type": "Typed",
+        "attempts": 1000001,
+        "time": 1.49
+    },
+    {
+        "password": "SON GOKU",
+        "type": "Typed",
+        "attempts": 1000001,
+        "time": 1.49
+    },
+    {
+        "password": "asalam valeikum",
+        "type": "Typed",
+        "attempts": 1000001,
+        "time": 2.0
+    },
+    {
+        "password": "iski uski sabki maa ki chut",
+        "type": "Typed",
+        "attempts": 1000001,
+        "time": 3.22
+    },
+    {
+        "password": "maa ka lauda",
+        "type": "Typed",
+        "attempts": 1000001,
+        "time": 1.77
+    }
+]

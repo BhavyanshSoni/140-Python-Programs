@@ -1,0 +1,7 @@
+from time import sleep
+
+def s(txt, delay=0.04):
+    for i in txt:
+        print(i, end='', flush=True)
+        sleep(delay)
+    print()

@@ -1,0 +1,15 @@
+{
+    "habits": [],
+    "moods": [
+        {
+            "mood": "tired",
+            "date": "2025-06-24"
+        }
+    ],
+    "advice_history": [
+        {
+            "date": "2025-06-24",
+            "advice": "Maintain your positive energy"
+        }
+    ]
+}

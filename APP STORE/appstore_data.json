@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Snake Game",
+        "desc": "\ud83d\udc0d Classic snake game in terminal",
+        "author": "Bhavyansh",
+        "category": "Game",
+        "install_cmd": "python snake_game.py"
+    },
+    {
+        "name": "ToDo Manager",
+        "desc": "\u2705 Manage daily tasks easily",
+        "author": "Bhavyansh",
+        "category": "Utility",
+        "install_cmd": "python todo_manager.py"
+    },
+    {
+        "name": "Weather CLI",
+        "desc": "\u2600\ufe0f Get current weather updates",
+        "author": "Bhavyansh",
+        "category": "Utility",
+        "install_cmd": "python weather_cli.py"
+    },
+    {
+        "name": "TEST",
+        "desc": "this app is uhhhh",
+        "author": "Bhavyansh",
+        "category": "GAME",
+        "install_cmd": "isakdmsivjwnda"
+    }
+]

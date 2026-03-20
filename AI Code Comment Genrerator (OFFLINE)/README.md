@@ -11,6 +11,7 @@ A local tool that analyzes Python code files and automatically generates meaning
 - **Batch Processing**: Process single files or entire directories
 - **Flexible Output**: Generate new files or overwrite existing ones
 - **Complexity Analysis**: Identifies complex functions that may need refactoring
+- **Private/Folder Skips**: Optionally skip private symbols and excluded directories
 
 ## How It Works
 
@@ -54,14 +55,27 @@ python main.py your_directory/
 
 # Process directory with verbose output
 python main.py your_directory/ --verbose
+
+# Skip private functions/classes (names starting with "_")
+python main.py your_directory/ --skip-private
+
+# Exclude directories by name (repeatable)
+python main.py your_directory/ --exclude-dir venv --exclude-dir .git --exclude-dir __pycache__
+
+# File paths with spaces (PowerShell-friendly)
+python main.py main copy.py --overwrite
+# (Quoting also works)
+python main.py "main copy.py" --overwrite
 ```
 
 ### Command Line Options
 
-- `path`: Python file or directory to process
+- `path`: Python file or directory to process (paths containing spaces can be passed without quotes)
 - `-o, --output`: Output file or directory
 - `--overwrite`: Overwrite original files
 - `--verbose, -v`: Verbose output
+- `--skip-private`: Skip functions and classes whose names start with `_`
+- `--exclude-dir`: Directory name to exclude when processing a directory (can be used multiple times)
 - `-h, --help`: Show help message
 
 ## Examples
@@ -77,7 +91,7 @@ def calculate_area(length, width):
 **Output:**
 ```python
 def calculate_area(length, width):
-    """Calculates or computes calculate_area with parameters: length, width. Returns None."""
+    """Calculates or computes calculate_area with parameters: length, width."""
     return length * width
 ```
 
@@ -102,15 +116,15 @@ class UserManager:
     """Manages and coordinates class UserManager. Contains 3 methods."""
     
     def __init__(self, database):
-        """Creates or initializes __init__ with parameters: database. Returns None."""
+        """Performs operation __init__ with parameters: database."""
         self.db = database
     
     def get_user(self, user_id):
-        """Retrieves or fetches get_user with parameters: user_id. Returns None."""
+        """Retrieves or fetches get_user with parameters: user_id."""
         return self.db.find_user(user_id)
     
     def create_user(self, user_data):
-        """Creates or initializes create_user with parameters: user_data. Returns None."""
+        """Creates or initializes create_user with parameters: user_data."""
         return self.db.insert_user(user_data)
 ```
 
@@ -174,6 +188,10 @@ Process entire projects with:
 - Preserved directory structure
 - Error handling and reporting
 - Progress tracking
+- Optional exclusions (`--exclude-dir`)
+- Optional skipping of private symbols (`--skip-private`)
+
+When processing a directory and **not** using `--overwrite`, outputs are written into a `commented/` folder (or the folder you pass via `-o/--output`) and the directory structure is preserved.
 
 ## Limitations
 

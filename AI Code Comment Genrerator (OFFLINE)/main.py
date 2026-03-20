@@ -242,8 +242,16 @@ class CodeAnalyzer:
 class CommentGenerator:
     """Generates and inserts comments into Python code."""
     
-    def __init__(self):
+    def __init__(self, skip_private: bool = False, exclude_dirs: Optional[List[str]] = None):
+        """
+        Initializes the comment generator.
+
+        :param skip_private: When True, skip functions/classes whose names start with '_'.
+        :param exclude_dirs: Directory names to skip when processing directories.
+        """
         self.analyzer = CodeAnalyzer()
+        self.skip_private = skip_private
+        self.exclude_dirs = exclude_dirs or []
     
     def process_file(self, file_path: str, output_path: Optional[str] = None, 
                     overwrite: bool = False) -> str:
@@ -281,12 +289,12 @@ class CommentGenerator:
         # Analyze and collect comments
         for node in ast.walk(tree):
             if isinstance(node, ast.FunctionDef):
-                if not ast.get_docstring(node):
+                if not ast.get_docstring(node) and self._should_include_name(node.name):
                     analysis = self.analyzer.analyze_function(node)
                     comments_to_add[node.lineno] = analysis['suggested_comment']
             
             elif isinstance(node, ast.ClassDef):
-                if not ast.get_docstring(node):
+                if not ast.get_docstring(node) and self._should_include_name(node.name):
                     analysis = self.analyzer.analyze_class(node)
                     comments_to_add[node.lineno] = analysis['suggested_comment']
         
@@ -304,20 +312,41 @@ class CommentGenerator:
         
         return '\n'.join(new_lines)
     
+    def _should_include_name(self, name: str) -> bool:
+        """Determines whether a given function/class name should be processed."""
+        if not self.skip_private:
+            return True
+        return not name.startswith('_')
+    
     def process_directory(self, directory_path: str, output_dir: Optional[str] = None,
                          overwrite: bool = False) -> List[str]:
         """Processes all Python files in a directory."""
         results = []
         directory = Path(directory_path)
         
-        if output_dir is None and not overwrite:
-            output_dir = directory / "commented"
-            output_dir.mkdir(exist_ok=True)
+        # Normalize output directory to a Path if provided
+        output_dir_path: Optional[Path] = None
+        if output_dir is not None:
+            output_dir_path = Path(output_dir)
+        
+        if output_dir_path is None and not overwrite:
+            output_dir_path = directory / "commented"
+        
+        if output_dir_path is not None and not overwrite:
+            output_dir_path.mkdir(parents=True, exist_ok=True)
         
         for py_file in directory.rglob("*.py"):
-            if output_dir and not overwrite:
+            # Skip files in excluded directories
+            if any(part in self.exclude_dirs for part in py_file.parts):
+                continue
+            
+            # Avoid re-processing files inside the output directory
+            if output_dir_path is not None and not overwrite and output_dir_path in py_file.parents:
+                continue
+            
+            if output_dir_path is not None and not overwrite:
                 relative_path = py_file.relative_to(directory)
-                output_path = output_dir / relative_path
+                output_path = output_dir_path / relative_path
                 output_path.parent.mkdir(parents=True, exist_ok=True)
             else:
                 output_path = None
@@ -346,16 +375,27 @@ Examples:
         """
     )
     
-    parser.add_argument('path', help='Python file or directory to process')
+    # Accept paths with spaces without requiring quotes, e.g.:
+    #   python main.py main copy.py
+    # This consumes multiple tokens and joins them back into a single path.
+    parser.add_argument('path', nargs='+', help='Python file or directory to process')
     parser.add_argument('-o', '--output', help='Output file or directory')
     parser.add_argument('--overwrite', action='store_true', 
                        help='Overwrite original files')
     parser.add_argument('--verbose', '-v', action='store_true',
                        help='Verbose output')
+    parser.add_argument('--skip-private', action='store_true',
+                       help="Skip functions and classes whose names start with '_'")
+    parser.add_argument('--exclude-dir', action='append', default=[],
+                       help='Directory name to exclude when processing a directory (can be used multiple times)')
     
     args = parser.parse_args()
     
-    generator = CommentGenerator()
+    path_str = " ".join(args.path).strip()
+    args.path = path_str
+    
+    generator = CommentGenerator(skip_private=args.skip_private,
+                                 exclude_dirs=args.exclude_dir)
     
     if os.path.isfile(args.path):
         if not args.path.endswith('.py'):

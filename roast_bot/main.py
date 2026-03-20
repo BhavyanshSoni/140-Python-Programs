@@ -1,5 +1,9 @@
 import random
-from utils import slow_print, print_signature
+
+def slow_print(t, d=0.04):
+    for i in t:
+        print(i, end='', flush=True)
+
 
 ROASTS = [
     "Hey {}, you're so slow, Internet Explorer feels bad for you! 🐌",
@@ -23,20 +27,19 @@ def generate_roast(name):
     return random.choice(ROASTS).format(name)
 
 def main():
-    slow_print("🔥 Welcome to the Personal Roast Bot! 🔥", color='green')
-    slow_print("Get ready for some light-hearted roasts!", color='yellow')
-    slow_print("Type 'quit' to exit", color='yellow')
+    slow_print("🔥 Welcome to the Personal Roast Bot! 🔥",)
+    slow_print("Get ready for some light-hearted roasts!",)
+    slow_print("Type 'quit' to exit",)
     
     while True:
         name = input("\nWho should I roast? ")
         if name.lower() == 'quit':
             break
             
-        slow_print("\nPreparing a spicy roast... 🌶️", color='red')
-        slow_print("3... 2... 1...", color='yellow', delay=0.5)
-        slow_print(generate_roast(name), color='magenta')
+        slow_print("\nPreparing a spicy roast... 🌶️")
+        slow_print("3... 2... 1...",d=0.5)
+        slow_print(generate_roast(name),)
     
-    print_signature()
 
 if __name__ == "__main__":
     main() 

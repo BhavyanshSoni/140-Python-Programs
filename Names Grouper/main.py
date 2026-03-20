@@ -23,4 +23,5 @@ def main():
         j +=1
         for k in i:
             s(f"\nGroup {j}. {k}")
+            
 main()

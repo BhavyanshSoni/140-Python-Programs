@@ -1,898 +1,0 @@
-[2025-06-15 09:34:38] #   N e u r a D e s k   -   U l t i m a t e   O f f l i n e   A I - P o w e r e d   V i r t u a l   O p e r a t i n g   S y s t e m 
- ⏎ #   S I N G L E   F I L E   -   A L L - I N - O N E   I M P L E M E N T A T I O N 
- ⏎ #   D e v e l o p e r :   B h a v y a n s h   S o n i 
- ⏎ 
- ⏎ i m p o r t   o s 
- ⏎ i m p o r t   t k i n t e r   a s   t k 
- ⏎ i m p o r t   c u s t o m t k i n t e r   a s   c t k 
- ⏎ i m p o r t   t h r e a d i n g 
- ⏎ i m p o r t   t i m e 
- ⏎ f r o m   t k i n t e r   i m p o r t   m e s s a g e b o x ,   f i l e d i a l o g 
- ⏎ f r o m   d a t e t i m e   i m p o r t   d a t e t i m e 
- ⏎ i m p o r t   s h u t i l 
- ⏎ 
- ⏎ #   - - - - - - - - - - - - - - - - - - - - - - - - - - - -   I N I T   W I N D O W   - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- ⏎ c t k . s e t _ a p p e a r a n c e _ m o d e ( " d a r k " ) 
- ⏎ c t k . s e t _ d e f a u l t _ c o l o r _ t h e m e ( " d a r k - b l u e " ) 
- ⏎ 
- ⏎ c l a s s   N e u r a D e s k ( c t k . C T k ) : 
- ⏎         d e f   _ _ i n i t _ _ ( s e l f ) : 
- ⏎                 s u p e r ( ) . _ _ i n i t _ _ ( ) 
- ⏎                 s e l f . t i t l e ( " N e u r a D e s k   -   V i r t u a l   O S " ) 
- ⏎                 s e l f . g e o m e t r y ( " 1 2 0 0 x 7 0 0 " ) 
- ⏎                 s e l f . r e s i z a b l e ( F a l s e ,   F a l s e ) 
- ⏎                 s e l f . c o n f i g u r e ( f g _ c o l o r = " # 1 e 1 e 2 e " ) 
- ⏎ 
- ⏎                 s e l f . f r a m e s   =   { } 
- ⏎                 s e l f . c r e a t e _ s i d e b a r ( ) 
- ⏎                 s e l f . c r e a t e _ m a i n _ f r a m e ( ) 
- ⏎                 s e l f . s h o w _ d a s h b o a r d ( ) 
- ⏎ 
- ⏎         d e f   c r e a t e _ s i d e b a r ( s e l f ) : 
- ⏎                 s e l f . s i d e b a r   =   c t k . C T k F r a m e ( s e l f ,   w i d t h = 2 0 0 ,   f g _ c o l o r = " # 1 6 1 6 2 2 " ) 
- ⏎                 s e l f . s i d e b a r . p a c k ( s i d e = " l e f t " ,   f i l l = " y " ) 
- ⏎ 
- ⏎                 c t k . C T k L a b e l ( s e l f . s i d e b a r ,   t e x t = " N e u r a D e s k " ,   f o n t = ( " A r i a l " ,   2 4 ,   " b o l d " ) ,   t e x t _ c o l o r = " s k y b l u e " ) . p a c k ( p a d y = 2 0 ) 
- ⏎ 
- ⏎                 s e l f . b u t t o n s   =   [ 
- ⏎                         ( " D a s h b o a r d " ,   s e l f . s h o w _ d a s h b o a r d ) , 
- ⏎                         ( " N o t e s " ,   s e l f . o p e n _ n o t e s ) , 
- ⏎                         ( " C a l c u l a t o r " ,   s e l f . o p e n _ c a l c u l a t o r ) , 
- ⏎                         ( " F i l e   E x p l o r e r " ,   s e l f . o p e n _ f i l e _ e x p l o r e r ) , 
- ⏎                         ( " E x p e n s e   T r a c k e r " ,   s e l f . o p e n _ e x p e n s e _ t r a c k e r ) , 
- ⏎                         ( " R e m i n d e r s " ,   s e l f . o p e n _ r e m i n d e r s ) , 
- ⏎                         ( " V a u l t " ,   s e l f . o p e n _ v a u l t ) , 
- ⏎                         ( " C h a t b o t " ,   s e l f . o p e n _ c h a t b o t ) , 
- ⏎                         ( " V o i c e   A s s i s t a n t " ,   s e l f . o p e n _ v o i c e _ a s s i s t a n t ) 
- ⏎                 ] 
- ⏎ 
- ⏎                 f o r   t e x t ,   c m d   i n   s e l f . b u t t o n s : 
- ⏎                         b t n   =   c t k . C T k B u t t o n ( s e l f . s i d e b a r ,   t e x t = t e x t ,   c o m m a n d = c m d ) 
- ⏎                         b t n . p a c k ( p a d y = 6 ,   f i l l = " x " ,   p a d x = 1 0 ) 
- ⏎ 
- ⏎         d e f   c r e a t e _ m a i n _ f r a m e ( s e l f ) : 
- ⏎                 s e l f . m a i n _ f r a m e   =   c t k . C T k F r a m e ( s e l f ,   f g _ c o l o r = " # 1 e 1 e 2 e " ) 
- ⏎                 s e l f . m a i n _ f r a m e . p a c k ( s i d e = " r i g h t " ,   f i l l = " b o t h " ,   e x p a n d = T r u e ) 
- ⏎ 
- ⏎         d e f   s w i t c h _ f r a m e ( s e l f ,   f r a m e _ c l a s s ) : 
- ⏎                 f o r   w i d g e t   i n   s e l f . m a i n _ f r a m e . w i n f o _ c h i l d r e n ( ) : 
- ⏎                         w i d g e t . d e s t r o y ( ) 
- ⏎                 f r a m e _ c l a s s ( s e l f . m a i n _ f r a m e ) . p a c k ( f i l l = " b o t h " ,   e x p a n d = T r u e ) 
- ⏎ 
- ⏎         d e f   s h o w _ d a s h b o a r d ( s e l f ) : 
- ⏎                 s e l f . s w i t c h _ f r a m e ( D a s h b o a r d A p p ) 
- ⏎ 
- ⏎         d e f   o p e n _ n o t e s ( s e l f ) : 
- ⏎                 s e l f . s w i t c h _ f r a m e ( N o t e s A p p ) 
- ⏎ 
- ⏎         d e f   o p e n _ c a l c u l a t o r ( s e l f ) : 
- ⏎                 s e l f . s w i t c h _ f r a m e ( C a l c u l a t o r A p p ) 
- ⏎ 
- ⏎         d e f   o p e n _ f i l e _ e x p l o r e r ( s e l f ) : 
- ⏎                 s e l f . s w i t c h _ f r a m e ( F i l e E x p l o r e r A p p ) 
- ⏎ 
- ⏎         d e f   o p e n _ e x p e n s e _ t r a c k e r ( s e l f ) : 
- ⏎                 s e l f . s w i t c h _ f r a m e ( E x p e n s e T r a c k e r A p p ) 
- ⏎ 
- ⏎         d e f   o p e n _ r e m i n d e r s ( s e l f ) : 
- ⏎                 s e l f . s w i t c h _ f r a m e ( R e m i n d e r A p p ) 
- ⏎ 
- ⏎         d e f   o p e n _ v a u l t ( s e l f ) : 
- ⏎                 s e l f . s w i t c h _ f r a m e ( F o l d e r V a u l t A p p ) 
- ⏎ 
- ⏎         d e f   o p e n _ c h a t b o t ( s e l f ) : 
- ⏎                 s e l f . s w i t c h _ f r a m e ( C h a t b o t A p p ) 
- ⏎ 
- ⏎         d e f   o p e n _ v o i c e _ a s s i s t a n t ( s e l f ) : 
- ⏎                 s e l f . s w i t c h _ f r a m e ( V o i c e A s s i s t a n t A p p ) 
- ⏎ 
- ⏎ #   - - - - - - - - - - - - - - - - - - - - - - - - - - - -   I N D I V I D U A L   A P P S   - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- ⏎ c l a s s   D a s h b o a r d A p p ( c t k . C T k F r a m e ) : 
- ⏎         d e f   _ _ i n i t _ _ ( s e l f ,   m a s t e r ) : 
- ⏎                 s u p e r ( ) . _ _ i n i t _ _ ( m a s t e r ) 
- ⏎                 c t k . C T k L a b e l ( s e l f ,   t e x t = " W e l c o m e   t o   N e u r a D e s k ! " ,   f o n t = ( " A r i a l " ,   2 8 ,   " b o l d " ) ,   t e x t _ c o l o r = " c y a n " ) . p a c k ( p a d y = 2 0 ) 
- ⏎ 
- ⏎ c l a s s   N o t e s A p p ( c t k . C T k F r a m e ) : 
- ⏎         d e f   _ _ i n i t _ _ ( s e l f ,   m a s t e r ) : 
- ⏎                 s u p e r ( ) . _ _ i n i t _ _ ( m a s t e r ) 
- ⏎                 s e l f . t e x t b o x   =   c t k . C T k T e x t b o x ( s e l f ,   w i d t h = 7 0 0 ,   h e i g h t = 5 0 0 ) 
- ⏎                 s e l f . t e x t b o x . p a c k ( p a d y = 2 0 ) 
- ⏎                 c t k . C T k B u t t o n ( s e l f ,   t e x t = " S a v e   N o t e " ,   c o m m a n d = s e l f . s a v e _ n o t e ) . p a c k ( p a d y = 1 0 ) 
- ⏎ 
- ⏎         d e f   s a v e _ n o t e ( s e l f ) : 
- ⏎                 c o n t e n t   =   s e l f . t e x t b o x . g e t ( " 1 . 0 " ,   " e n d - 1 c " ) 
- ⏎                 w i t h   o p e n ( " n o t e s . t x t " ,   " w " ,   e n c o d i n g = " u t f - 8 " )   a s   f : 
- ⏎                         f . w r i t e ( c o n t e n t ) 
- ⏎                 m e s s a g e b o x . s h o w i n f o ( " S a v e d " ,   " N o t e   s a v e d   s u c c e s s f u l l y ! " ) 
- ⏎ 
- ⏎ c l a s s   C a l c u l a t o r A p p ( c t k . C T k F r a m e ) : 
- ⏎         d e f   _ _ i n i t _ _ ( s e l f ,   m a s t e r ) : 
- ⏎                 s u p e r ( ) . _ _ i n i t _ _ ( m a s t e r ) 
- ⏎                 s e l f . e x p r   =   " " 
- ⏎                 s e l f . d i s p l a y   =   c t k . C T k E n t r y ( s e l f ,   w i d t h = 3 0 0 ) 
- ⏎                 s e l f . d i s p l a y . p a c k ( p a d y = 1 0 ) 
- ⏎                 f o r   r o w   i n   [ [ " 7 " , " 8 " , " 9 " , " / " ] , [ " 4 " , " 5 " , " 6 " , " * " ] , [ " 1 " , " 2 " , " 3 " , " - " ] , [ " 0 " , " . " , " = " , " + " ] ] : 
- ⏎                         f   =   c t k . C T k F r a m e ( s e l f ) 
- ⏎                         f . p a c k ( ) 
- ⏎                         f o r   b   i n   r o w : 
- ⏎                                 c t k . C T k B u t t o n ( f ,   t e x t = b ,   w i d t h = 6 0 ,   c o m m a n d = l a m b d a   x = b : s e l f . c l i c k ( x ) ) . p a c k ( s i d e = " l e f t " ,   p a d x = 2 ,   p a d y = 5 ) 
- ⏎ 
- ⏎         d e f   c l i c k ( s e l f ,   c h a r ) : 
- ⏎                 i f   c h a r   = =   " = " : 
- ⏎                         t r y : 
- ⏎                                 r e s u l t   =   s t r ( e v a l ( s e l f . e x p r ) ) 
- ⏎                                 s e l f . d i s p l a y . d e l e t e ( 0 ,   " e n d " ) 
- ⏎                                 s e l f . d i s p l a y . i n s e r t ( " e n d " ,   r e s u l t ) 
- ⏎                                 s e l f . e x p r   =   r e s u l t 
- ⏎                         e x c e p t : 
- ⏎                                 s e l f . d i s p l a y . d e l e t e ( 0 ,   " e n d " ) 
- ⏎                                 s e l f . d i s p l a y . i n s e r t ( " e n d " ,   " E r r o r " ) 
- ⏎                                 s e l f . e x p r   =   " " 
- ⏎                 e l s e : 
- ⏎                         s e l f . e x p r   + =   c h a r 
- ⏎                         s e l f . d i s p l a y . d e l e t e ( 0 ,   " e n d " ) 
- ⏎                         s e l f . d i s p l a y . i n s e r t ( " e n d " ,   s e l f . e x p r ) 
- ⏎ 
- ⏎ c l a s s   F i l e E x p l o r e r A p p ( c t k . C T k F r a m e ) : 
- ⏎         d e f   _ _ i n i t _ _ ( s e l f ,   m a s t e r ) : 
- ⏎                 s u p e r ( ) . _ _ i n i t _ _ ( m a s t e r ) 
- ⏎                 c t k . C T k B u t t o n ( s e l f ,   t e x t = " O p e n   F i l e " ,   c o m m a n d = s e l f . o p e n _ f i l e ) . p a c k ( p a d y = 2 0 ) 
- ⏎ 
- ⏎         d e f   o p e n _ f i l e ( s e l f ) : 
- ⏎                 f i l e   =   f i l e d i a l o g . a s k o p e n f i l e n a m e ( ) 
- ⏎                 i f   f i l e : 
- ⏎                         o s . s t a r t f i l e ( f i l e ) 
- ⏎ 
- ⏎ #   A d d i t i o n a l   a p p s   l i k e   E x p e n s e T r a c k e r A p p ,   R e m i n d e r A p p ,   F o l d e r V a u l t A p p , 
- ⏎ #   C h a t b o t A p p ,   V o i c e A s s i s t a n t A p p   t o   b e   a d d e d   b e l o w   i n   f u l l   d e t a i l . . . 
- ⏎ 
- ⏎ #   - - - - - - - - - - - - - - - - - - - - - - - - - - - -   L A U N C H   A P P   - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- ⏎ i f   _ _ n a m e _ _   = =   " _ _ m a i n _ _ " : 
- ⏎         a p p   =   N e u r a D e s k ( ) 
- ⏎         a p p . m a i n l o o p ( ) 
- ⏎
-[2025-06-15 10:04:37] #   N e u r a D e s k   U l t i m a t e   O S   -   F u l l   I n t e g r a t e d   P y t h o n   A p p 
- ⏎ #   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- ⏎ #   F e a t u r e s : 
- ⏎ #   -   N o t e s   ( O p e n ,   S a v e ) 
- ⏎ #   -   C a l c u l a t o r   ( F u l l ) 
- ⏎ #   -   F i l e   E x p l o r e r   ( C r e a t e / O p e n / D e l e t e   f i l e s   &   f o l d e r s ) 
- ⏎ #   -   S e c u r e   V a u l t   ( P a s s w o r d   p r o t e c t   f o l d e r s ,   l o c k / u n l o c k ) 
- ⏎ #   -   E x p e n s e   T r a c k e r   ( A d d / V i e w / D e l e t e ,   s i m p l e   c h a r t s ) 
- ⏎ #   -   R e m i n d e r   ( A d d / V i e w / D e l e t e   r e m i n d e r s ,   p o p u p   n o t i f i c a t i o n s ) 
- ⏎ #   -   C h a t b o t   ( S i m p l e   o f f l i n e   c o n v e r s a t i o n a l ) 
- ⏎ #   -   A I   A s s i s t a n t   ( B a s i c   c o m m a n d s   +   v o i c e   s u p p o r t ) 
- ⏎ 
- ⏎ i m p o r t   t k i n t e r   a s   t k 
- ⏎ f r o m   t k i n t e r   i m p o r t   m e s s a g e b o x ,   f i l e d i a l o g ,   s i m p l e d i a l o g 
- ⏎ i m p o r t   o s ,   s h u t i l ,   j s o n ,   d a t e t i m e ,   t h r e a d i n g ,   m a t h ,   s y s 
- ⏎ i m p o r t   p l a t f o r m 
- ⏎ t r y : 
- ⏎         i m p o r t   p y t t s x 3 
- ⏎         i m p o r t   s p e e c h _ r e c o g n i t i o n   a s   s r 
- ⏎ e x c e p t   I m p o r t E r r o r : 
- ⏎         #   V o i c e   f e a t u r e s   w o n ' t   w o r k   i f   t h e s e   n o t   i n s t a l l e d 
- ⏎         p y t t s x 3   =   N o n e 
- ⏎         s r   =   N o n e 
- ⏎ 
- ⏎ #   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- ⏎ #   H e l p e r   F u n c t i o n s 
- ⏎ 
- ⏎ d e f   r e s o u r c e _ p a t h ( r e l a t i v e _ p a t h ) : 
- ⏎         #   T o   s u p p o r t   r u n n i n g   a s   s c r i p t   o r   b u n d l e d   e x e 
- ⏎         t r y : 
- ⏎                 b a s e _ p a t h   =   s y s . _ M E I P A S S 
- ⏎         e x c e p t   E x c e p t i o n : 
- ⏎                 b a s e _ p a t h   =   o s . p a t h . a b s p a t h ( " . " ) 
- ⏎         r e t u r n   o s . p a t h . j o i n ( b a s e _ p a t h ,   r e l a t i v e _ p a t h ) 
- ⏎ 
- ⏎ d e f   s p e a k ( t e x t ) : 
- ⏎         i f   p y t t s x 3   i s   N o n e : 
- ⏎                 r e t u r n 
- ⏎         e n g i n e   =   p y t t s x 3 . i n i t ( ) 
- ⏎         e n g i n e . s a y ( t e x t ) 
- ⏎         e n g i n e . r u n A n d W a i t ( ) 
- ⏎ 
- ⏎ d e f   l i s t e n ( ) : 
- ⏎         i f   s r   i s   N o n e : 
- ⏎                 r e t u r n   N o n e 
- ⏎         r e c o g n i z e r   =   s r . R e c o g n i z e r ( ) 
- ⏎         m i c   =   s r . M i c r o p h o n e ( ) 
- ⏎         w i t h   m i c   a s   s o u r c e : 
- ⏎                 r e c o g n i z e r . a d j u s t _ f o r _ a m b i e n t _ n o i s e ( s o u r c e ) 
- ⏎                 a u d i o   =   r e c o g n i z e r . l i s t e n ( s o u r c e ) 
- ⏎         t r y : 
- ⏎                 r e t u r n   r e c o g n i z e r . r e c o g n i z e _ g o o g l e ( a u d i o ) 
- ⏎         e x c e p t : 
- ⏎                 r e t u r n   N o n e 
- ⏎ 
- ⏎ d e f   e n s u r e _ d i r ( p a t h ) : 
- ⏎         i f   n o t   o s . p a t h . e x i s t s ( p a t h ) : 
- ⏎                 o s . m a k e d i r s ( p a t h ) 
- ⏎ 
- ⏎ #   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
- ⏎ #   M a i n   A p p l i c a t i o n 
- ⏎ 
- ⏎ c l a s s   N e u r a D e s k ( t k . T k ) : 
- ⏎         d e f   _ _ i n i t _ _ ( s e l f ) : 
- ⏎                 s u p e r ( ) . _ _ i n i t _ _ ( ) 
- ⏎                 s e l f . t i t l e ( " N e u r a D e s k   U l t i m a t e   O S " ) 
- ⏎                 s e l f . g e o m e t r y ( " 1 1 0 0 x 6 5 0 " ) 
- ⏎                 s e l f . c o n f i g u r e ( b g = " # 1 2 1 2 1 2 " ) 
- ⏎                 s e l f . r e s i z a b l e ( F a l s e ,   F a l s e ) 
- ⏎ 
- ⏎                 #   U s e r   h o m e   d i r e c t o r y   f o r   s t o r i n g   a p p   d a t a 
- ⏎                 s e l f . a p p d a t a _ d i r   =   o s . p a t h . j o i n ( o s . p a t h . e x p a n d u s e r ( " ~ " ) ,   " . n e u r a d e s k _ d a t a " ) 
- ⏎                 e n s u r e _ d i r ( s e l f . a p p d a t a _ d i r ) 
- ⏎ 
- ⏎                 #   S i d e b a r 
- ⏎                 s e l f . s i d e b a r   =   t k . F r a m e ( s e l f ,   b g = " # 2 2 2 2 2 2 " ,   w i d t h = 1 8 0 ) 
- ⏎                 s e l f . s i d e b a r . p a c k ( s i d e = " l e f t " ,   f i l l = " y " ) 
- ⏎ 
- ⏎                 #   T i t l e 
- ⏎                 s e l f . t i t l e _ l a b e l   =   t k . L a b e l ( s e l f . s i d e b a r ,   t e x t = " N e u r a D e s k " ,   f g = " c y a n " ,   b g = " # 2 2 2 2 2 2 " , 
- ⏎                                                                         f o n t = ( " S e g o e   U I " ,   2 0 ,   " b o l d " ) ) 
- ⏎                 s e l f . t i t l e _ l a b e l . p a c k ( p a d y = 2 0 ) 
- ⏎ 
- ⏎                 #   B u t t o n s   f o r   a p p s 
- ⏎                 s e l f . a p p s   =   [ 
- ⏎                         ( " N o t e s " ,   s e l f . o p e n _ n o t e s ) , 
- ⏎                         ( " C a l c u l a t o r " ,   s e l f . o p e n _ c a l c u l a t o r ) , 
- ⏎                         ( " F i l e   E x p l o r e r " ,   s e l f . o p e n _ f i l e _ e x p l o r e r ) , 
- ⏎                         ( " S e c u r e   V a u l t " ,   s e l f . o p e n _ v a u l t ) , 
- ⏎                         ( " E x p e n s e   T r a c k e r " ,   s e l f . o p e n _ e x p e n s e _ t r a c k e r ) , 
- ⏎                         ( " R e m i n d e r " ,   s e l f . o p e n _ r e m i n d e r ) , 
- ⏎                         ( " C h a t b o t " ,   s e l f . o p e n _ c h a t b o t ) , 
- ⏎                         ( " A I   A s s i s t a n t " ,   s e l f . o p e n _ a i _ a s s i s t a n t ) 
- ⏎                 ] 
- ⏎ 
- ⏎                 f o r   n a m e ,   c m d   i n   s e l f . a p p s : 
- ⏎                         b t n   =   t k . B u t t o n ( s e l f . s i d e b a r ,   t e x t = n a m e ,   f o n t = ( " S e g o e   U I " ,   1 4 ) ,   f g = " w h i t e " ,   b g = " # 3 3 3 3 3 3 " , 
- ⏎                                                         r e l i e f = " f l a t " ,   a c t i v e b a c k g r o u n d = " # 5 5 5 5 5 5 " ,   a c t i v e f o r e g r o u n d = " w h i t e " , 
- ⏎                                                         c o m m a n d = c m d ) 
- ⏎                         b t n . p a c k ( f i l l = " x " ,   p a d x = 1 0 ,   p a d y = 8 ) 
- ⏎ 
- ⏎                 #   M a i n   a p p   a r e a 
- ⏎                 s e l f . a p p _ a r e a   =   t k . F r a m e ( s e l f ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 s e l f . a p p _ a r e a . p a c k ( e x p a n d = T r u e ,   f i l l = " b o t h " ) 
- ⏎ 
- ⏎                 #   I n i t i a l i z e   f i r s t   a p p 
- ⏎                 s e l f . o p e n _ n o t e s ( ) 
- ⏎ 
- ⏎         d e f   c l e a r _ a p p _ a r e a ( s e l f ) : 
- ⏎                 f o r   w i d g e t   i n   s e l f . a p p _ a r e a . w i n f o _ c h i l d r e n ( ) : 
- ⏎                         w i d g e t . d e s t r o y ( ) 
- ⏎ 
- ⏎         #   - - - - - - - - - - - - - - - - - - -   N o t e s   - - - - - - - - - - - - - - - - - - - 
- ⏎ 
- ⏎         d e f   o p e n _ n o t e s ( s e l f ) : 
- ⏎                 s e l f . c l e a r _ a p p _ a r e a ( ) 
- ⏎ 
- ⏎                 f r a m e   =   t k . F r a m e ( s e l f . a p p _ a r e a ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 f r a m e . p a c k ( e x p a n d = T r u e ,   f i l l = " b o t h " ,   p a d x = 2 0 ,   p a d y = 2 0 ) 
- ⏎ 
- ⏎                 t e x t _ a r e a   =   t k . T e x t ( f r a m e ,   b g = " # 2 2 2 2 2 2 " ,   f g = " w h i t e " ,   i n s e r t b a c k g r o u n d = " w h i t e " , 
- ⏎                                                         f o n t = ( " C o n s o l a s " ,   1 4 ) ,   w r a p = " w o r d " ) 
- ⏎                 t e x t _ a r e a . p a c k ( e x p a n d = T r u e ,   f i l l = " b o t h " ) 
- ⏎ 
- ⏎                 t o o l b a r   =   t k . F r a m e ( f r a m e ,   b g = " # 1 2 1 2 1 2 " ) 
- ⏎                 t o o l b a r . p a c k ( f i l l = " x " ,   p a d y = 1 0 ) 
- ⏎ 
- ⏎                 d e f   s a v e _ n o t e ( ) : 
- ⏎                         p a t h   =   f i l e d i a l o g . a s k s a v e a s f i l e n a m e ( d e f a u l t e x t e n s i o n = " . t x t " , 
- ⏎                                                                                                 f i l e t y p e s = [ ( " T e x t   F i l e s " ,   " * . t x t " ) ] ) 
- ⏎                         i f   p a t h : 
- ⏎                                 t r y : 
- ⏎                                         w i t h   o p e n ( p a t h ,   " w " ,   e n c o d i n g = " u t f - 8 " )   a s   f : 
- ⏎                                                 f . w r i t e ( t e x t _ a r e a . g e t ( " 1 . 0 " ,   " e n d - 1 c " ) ) 
- ⏎                                         m e s s a g e b o x . s h o w i n f o ( " S u c c e s s " ,   " N o t e   s a v e d   s u c c e s s f u l l y . " ) 
- ⏎                                 e x c e p t   E x c e p t i o n   a s   e : 
- ⏎                                         m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   f " F a i l e d   t o   s a v e   n o t e :   { e } " ) 
- ⏎ 
- ⏎                 d e f   o p e n _ n o t e ( ) : 
- ⏎                         p a t h   =   f i l e d i a l o g . a s k o p e n f i l e n a m e ( f i l e t y p e s = [ ( " T e x t   F i l e s " ,   " * . t x t " ) ] ) 
- ⏎                         i f   p a t h : 
- ⏎                                 t r y : 
- ⏎                                         w i t h   o p e n ( p a t h ,   " r " ,   e n c o d i n g = " u t f - 8 " )   a s   f : 
- ⏎                                                 t e x t _ a r e a . d e l e t e ( " 1 . 0 " ,   " e n d " ) 
- ⏎                                                 t e x t _ a r e a . i n s e r t ( " 1 . 0 " ,   f . r e a d ( ) ) 
- ⏎                                 e x c e p t   E x c e p t i o n   a s   e : 
- ⏎                                         m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   f " F a i l e d   t o   o p e n   n o t e :   { e } " ) 
- ⏎ 
- ⏎                 o p e n _ b t n   =   t k . B u t t o n ( t o o l b a r ,   t e x t = " O p e n " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = o p e n _ n o t e ) 
- ⏎                 s a v e _ b t n   =   t k . B u t t o n ( t o o l b a r ,   t e x t = " S a v e " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = s a v e _ n o t e ) 
- ⏎                 o p e n _ b t n . p a c k ( s i d e = " l e f t " ,   p a d x = 5 ) 
- ⏎                 s a v e _ b t n . p a c k ( s i d e = " l e f t " ,   p a d x = 5 ) 
- ⏎ 
- ⏎         #   - - - - - - - - - - - - - - - - -   C a l c u l a t o r   - - - - - - - - - - - - - - - - - 
- ⏎ 
- ⏎         d e f   o p e n _ c a l c u l a t o r ( s e l f ) : 
- ⏎                 s e l f . c l e a r _ a p p _ a r e a ( ) 
- ⏎ 
- ⏎                 d i s p l a y   =   t k . E n t r y ( s e l f . a p p _ a r e a ,   f o n t = ( " C o n s o l a s " ,   2 4 ) ,   b g = " # 2 2 2 2 2 2 " ,   f g = " w h i t e " , 
- ⏎                                                       j u s t i f y = " r i g h t " ,   r e l i e f = " f l a t " ,   i n s e r t b a c k g r o u n d = " w h i t e " ) 
- ⏎                 d i s p l a y . p a c k ( f i l l = " x " ,   p a d x = 2 0 ,   p a d y = 2 0 ) 
- ⏎ 
- ⏎                 b t n s _ f r a m e   =   t k . F r a m e ( s e l f . a p p _ a r e a ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 b t n s _ f r a m e . p a c k ( ) 
- ⏎ 
- ⏎                 b u t t o n s   =   [ 
- ⏎                         [ ' 7 ' ,   ' 8 ' ,   ' 9 ' ,   ' / ' ] , 
- ⏎                         [ ' 4 ' ,   ' 5 ' ,   ' 6 ' ,   ' * ' ] , 
- ⏎                         [ ' 1 ' ,   ' 2 ' ,   ' 3 ' ,   ' - ' ] , 
- ⏎                         [ ' 0 ' ,   ' . ' ,   ' C ' ,   ' + ' ] , 
- ⏎                         [ ' ( ' ,   ' ) ' ,   ' = ' ,   ' D e l ' ] 
- ⏎                 ] 
- ⏎ 
- ⏎                 d e f   o n _ c l i c k ( b t n ) : 
- ⏎                         c u r r e n t   =   d i s p l a y . g e t ( ) 
- ⏎                         i f   b t n   = =   " C " : 
- ⏎                                 d i s p l a y . d e l e t e ( 0 ,   " e n d " ) 
- ⏎                         e l i f   b t n   = =   " D e l " : 
- ⏎                                 d i s p l a y . d e l e t e ( l e n ( c u r r e n t ) - 1 ,   " e n d " ) 
- ⏎                         e l i f   b t n   = =   " = " : 
- ⏎                                 t r y : 
- ⏎                                         r e s u l t   =   e v a l ( c u r r e n t ) 
- ⏎                                         d i s p l a y . d e l e t e ( 0 ,   " e n d " ) 
- ⏎                                         d i s p l a y . i n s e r t ( 0 ,   s t r ( r e s u l t ) ) 
- ⏎                                 e x c e p t : 
- ⏎                                         d i s p l a y . d e l e t e ( 0 ,   " e n d " ) 
- ⏎                                         d i s p l a y . i n s e r t ( 0 ,   " E r r o r " ) 
- ⏎                         e l s e : 
- ⏎                                 d i s p l a y . i n s e r t ( " e n d " ,   b t n ) 
- ⏎ 
- ⏎                 f o r   r o w   i n   b u t t o n s : 
- ⏎                         r o w _ f r a m e   =   t k . F r a m e ( b t n s _ f r a m e ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                         r o w _ f r a m e . p a c k ( p a d y = 3 ) 
- ⏎                         f o r   b   i n   r o w : 
- ⏎                                 b t n   =   t k . B u t t o n ( r o w _ f r a m e ,   t e x t = b ,   w i d t h = 5 ,   h e i g h t = 2 , 
- ⏎                                                                 f o n t = ( " C o n s o l a s " ,   1 6 ) ,   b g = " # 3 3 3 " ,   f g = " w h i t e " , 
- ⏎                                                                 r e l i e f = " f l a t " ,   a c t i v e b a c k g r o u n d = " # 5 5 5 " , 
- ⏎                                                                 c o m m a n d = l a m b d a   x = b :   o n _ c l i c k ( x ) ) 
- ⏎                                 b t n . p a c k ( s i d e = " l e f t " ,   p a d x = 5 ) 
- ⏎ 
- ⏎         #   - - - - - - - - - - - - - - - - -   F i l e   E x p l o r e r   - - - - - - - - - - - - - - - - - 
- ⏎ 
- ⏎         d e f   o p e n _ f i l e _ e x p l o r e r ( s e l f ) : 
- ⏎                 s e l f . c l e a r _ a p p _ a r e a ( ) 
- ⏎ 
- ⏎                 f r a m e   =   t k . F r a m e ( s e l f . a p p _ a r e a ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 f r a m e . p a c k ( e x p a n d = T r u e ,   f i l l = " b o t h " ,   p a d x = 1 0 ,   p a d y = 1 0 ) 
- ⏎ 
- ⏎                 #   P a t h   b a r 
- ⏎                 p a t h _ v a r   =   t k . S t r i n g V a r ( ) 
- ⏎                 c u r r e n t _ p a t h   =   o s . p a t h . e x p a n d u s e r ( " ~ " ) 
- ⏎                 p a t h _ v a r . s e t ( c u r r e n t _ p a t h ) 
- ⏎ 
- ⏎                 d e f   g o _ t o _ p a t h ( ) : 
- ⏎                         p a t h   =   p a t h _ v a r . g e t ( ) 
- ⏎                         i f   o s . p a t h . i s d i r ( p a t h ) : 
- ⏎                                 u p d a t e _ f i l e _ l i s t ( p a t h ) 
- ⏎                         e l s e : 
- ⏎                                 m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   " I n v a l i d   d i r e c t o r y   p a t h " ) 
- ⏎ 
- ⏎                 p a t h _ e n t r y   =   t k . E n t r y ( f r a m e ,   t e x t v a r i a b l e = p a t h _ v a r ,   b g = " # 2 2 2 " ,   f g = " w h i t e " , 
- ⏎                                                             r e l i e f = " f l a t " ,   i n s e r t b a c k g r o u n d = " w h i t e " ,   f o n t = ( " S e g o e   U I " ,   1 2 ) ) 
- ⏎                 p a t h _ e n t r y . p a c k ( f i l l = " x " ,   p a d x = 5 ,   p a d y = 5 ,   s i d e = " l e f t " ,   e x p a n d = T r u e ) 
- ⏎ 
- ⏎                 g o _ b t n   =   t k . B u t t o n ( f r a m e ,   t e x t = " G o " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " , 
- ⏎                                                       c o m m a n d = g o _ t o _ p a t h ) 
- ⏎                 g o _ b t n . p a c k ( p a d x = 5 ,   p a d y = 5 ,   s i d e = " l e f t " ) 
- ⏎ 
- ⏎                 #   F i l e   l i s t   b o x 
- ⏎                 l i s t b o x   =   t k . L i s t b o x ( f r a m e ,   b g = " # 2 2 2 " ,   f g = " w h i t e " ,   f o n t = ( " S e g o e   U I " ,   1 2 ) ,   s e l e c t b a c k g r o u n d = " # 5 5 5 " ) 
- ⏎                 l i s t b o x . p a c k ( f i l l = " b o t h " ,   e x p a n d = T r u e ,   p a d x = 5 ,   p a d y = 1 0 ) 
- ⏎ 
- ⏎                 #   S c r o l l b a r 
- ⏎                 s c r o l l b a r   =   t k . S c r o l l b a r ( l i s t b o x ,   o r i e n t = " v e r t i c a l " ) 
- ⏎                 s c r o l l b a r . p a c k ( s i d e = " r i g h t " ,   f i l l = " y " ) 
- ⏎                 l i s t b o x . c o n f i g ( y s c r o l l c o m m a n d = s c r o l l b a r . s e t ) 
- ⏎                 s c r o l l b a r . c o n f i g ( c o m m a n d = l i s t b o x . y v i e w ) 
- ⏎ 
- ⏎                 d e f   u p d a t e _ f i l e _ l i s t ( p a t h ) : 
- ⏎                         p a t h _ v a r . s e t ( p a t h ) 
- ⏎                         l i s t b o x . d e l e t e ( 0 ,   " e n d " ) 
- ⏎                         t r y : 
- ⏎                                 e n t r i e s   =   o s . l i s t d i r ( p a t h ) 
- ⏎                                 e n t r i e s . s o r t ( ) 
- ⏎                                 i f   o s . p a t h . d i r n a m e ( p a t h )   ! =   p a t h :     #   i f   n o t   r o o t ,   a d d   . . 
- ⏎                                         l i s t b o x . i n s e r t ( " e n d " ,   " . .   ( P a r e n t   F o l d e r ) " ) 
- ⏎                                 f o r   e   i n   e n t r i e s : 
- ⏎                                         f u l l   =   o s . p a t h . j o i n ( p a t h ,   e ) 
- ⏎                                         i f   o s . p a t h . i s d i r ( f u l l ) : 
- ⏎                                                 l i s t b o x . i n s e r t ( " e n d " ,   f " [ { e } ] " ) 
- ⏎                                         e l s e : 
- ⏎                                                 l i s t b o x . i n s e r t ( " e n d " ,   e ) 
- ⏎                         e x c e p t   E x c e p t i o n   a s   e : 
- ⏎                                 m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   f " F a i l e d   t o   l i s t   d i r e c t o r y :   { e } " ) 
- ⏎ 
- ⏎                 u p d a t e _ f i l e _ l i s t ( c u r r e n t _ p a t h ) 
- ⏎ 
- ⏎                 d e f   o p e n _ s e l e c t e d ( ) : 
- ⏎                         s e l   =   l i s t b o x . c u r s e l e c t i o n ( ) 
- ⏎                         i f   n o t   s e l : 
- ⏎                                 r e t u r n 
- ⏎                         s e l _ t e x t   =   l i s t b o x . g e t ( s e l [ 0 ] ) 
- ⏎                         c u r r   =   p a t h _ v a r . g e t ( ) 
- ⏎                         i f   s e l _ t e x t   = =   " . .   ( P a r e n t   F o l d e r ) " : 
- ⏎                                 n e w _ p a t h   =   o s . p a t h . d i r n a m e ( c u r r ) 
- ⏎                                 u p d a t e _ f i l e _ l i s t ( n e w _ p a t h ) 
- ⏎                                 r e t u r n 
- ⏎                         i f   s e l _ t e x t . s t a r t s w i t h ( " [ " )   a n d   s e l _ t e x t . e n d s w i t h ( " ] " ) : 
- ⏎                                 f o l d e r _ n a m e   =   s e l _ t e x t [ 1 : - 1 ] 
- ⏎                                 n e w _ p a t h   =   o s . p a t h . j o i n ( c u r r ,   f o l d e r _ n a m e ) 
- ⏎                                 u p d a t e _ f i l e _ l i s t ( n e w _ p a t h ) 
- ⏎                         e l s e : 
- ⏎                                 f i l e _ p a t h   =   o s . p a t h . j o i n ( c u r r ,   s e l _ t e x t ) 
- ⏎                                 t r y : 
- ⏎                                         i f   p l a t f o r m . s y s t e m ( )   = =   " W i n d o w s " : 
- ⏎                                                 o s . s t a r t f i l e ( f i l e _ p a t h ) 
- ⏎                                         e l i f   p l a t f o r m . s y s t e m ( )   = =   " D a r w i n " : 
- ⏎                                                 o s . s y s t e m ( f " o p e n   ' { f i l e _ p a t h } ' " ) 
- ⏎                                         e l s e : 
- ⏎                                                 o s . s y s t e m ( f " x d g - o p e n   ' { f i l e _ p a t h } ' " ) 
- ⏎                                 e x c e p t   E x c e p t i o n   a s   e : 
- ⏎                                         m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   f " C a n n o t   o p e n   f i l e :   { e } " ) 
- ⏎ 
- ⏎                 d e f   c r e a t e _ f o l d e r ( ) : 
- ⏎                         c u r r   =   p a t h _ v a r . g e t ( ) 
- ⏎                         n a m e   =   s i m p l e d i a l o g . a s k s t r i n g ( " C r e a t e   F o l d e r " ,   " E n t e r   f o l d e r   n a m e : " ) 
- ⏎                         i f   n a m e : 
- ⏎                                 p a t h _ n e w   =   o s . p a t h . j o i n ( c u r r ,   n a m e ) 
- ⏎                                 t r y : 
- ⏎                                         o s . m k d i r ( p a t h _ n e w ) 
- ⏎                                         u p d a t e _ f i l e _ l i s t ( c u r r ) 
- ⏎                                 e x c e p t   E x c e p t i o n   a s   e : 
- ⏎                                         m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   f " F a i l e d   t o   c r e a t e   f o l d e r :   { e } " ) 
- ⏎ 
- ⏎                 d e f   c r e a t e _ f i l e ( ) : 
- ⏎                         c u r r   =   p a t h _ v a r . g e t ( ) 
- ⏎                         n a m e   =   s i m p l e d i a l o g . a s k s t r i n g ( " C r e a t e   F i l e " ,   " E n t e r   f i l e   n a m e : " ) 
- ⏎                         i f   n a m e : 
- ⏎                                 p a t h _ n e w   =   o s . p a t h . j o i n ( c u r r ,   n a m e ) 
- ⏎                                 i f   o s . p a t h . e x i s t s ( p a t h _ n e w ) : 
- ⏎                                         m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   " F i l e   a l r e a d y   e x i s t s " ) 
- ⏎                                         r e t u r n 
- ⏎                                 t r y : 
- ⏎                                         w i t h   o p e n ( p a t h _ n e w ,   " w " ,   e n c o d i n g = " u t f - 8 " )   a s   f : 
- ⏎                                                 f . w r i t e ( " " )     #   e m p t y   f i l e 
- ⏎                                         u p d a t e _ f i l e _ l i s t ( c u r r ) 
- ⏎                                 e x c e p t   E x c e p t i o n   a s   e : 
- ⏎                                         m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   f " F a i l e d   t o   c r e a t e   f i l e :   { e } " ) 
- ⏎ 
- ⏎                 d e f   d e l e t e _ s e l e c t e d ( ) : 
- ⏎                         s e l   =   l i s t b o x . c u r s e l e c t i o n ( ) 
- ⏎                         i f   n o t   s e l : 
- ⏎                                 r e t u r n 
- ⏎                         s e l _ t e x t   =   l i s t b o x . g e t ( s e l [ 0 ] ) 
- ⏎                         c u r r   =   p a t h _ v a r . g e t ( ) 
- ⏎                         i f   s e l _ t e x t   = =   " . .   ( P a r e n t   F o l d e r ) " : 
- ⏎                                 r e t u r n 
- ⏎                         i f   s e l _ t e x t . s t a r t s w i t h ( " [ " )   a n d   s e l _ t e x t . e n d s w i t h ( " ] " ) : 
- ⏎                                 f o l d e r _ n a m e   =   s e l _ t e x t [ 1 : - 1 ] 
- ⏎                                 p a t h _ d e l   =   o s . p a t h . j o i n ( c u r r ,   f o l d e r _ n a m e ) 
- ⏎                                 i f   m e s s a g e b o x . a s k y e s n o ( " C o n f i r m   D e l e t e " ,   f " D e l e t e   f o l d e r   ' { f o l d e r _ n a m e } '   a n d   a l l   c o n t e n t s ? " ) : 
- ⏎                                         t r y : 
- ⏎                                                 s h u t i l . r m t r e e ( p a t h _ d e l ) 
- ⏎                                                 u p d a t e _ f i l e _ l i s t ( c u r r ) 
- ⏎                                         e x c e p t   E x c e p t i o n   a s   e : 
- ⏎                                                 m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   f " F a i l e d   t o   d e l e t e   f o l d e r :   { e } " ) 
- ⏎                         e l s e : 
- ⏎                                 p a t h _ d e l   =   o s . p a t h . j o i n ( c u r r ,   s e l _ t e x t ) 
- ⏎                                 i f   m e s s a g e b o x . a s k y e s n o ( " C o n f i r m   D e l e t e " ,   f " D e l e t e   f i l e   ' { s e l _ t e x t } ' ? " ) : 
- ⏎                                         t r y : 
- ⏎                                                 o s . r e m o v e ( p a t h _ d e l ) 
- ⏎                                                 u p d a t e _ f i l e _ l i s t ( c u r r ) 
- ⏎                                         e x c e p t   E x c e p t i o n   a s   e : 
- ⏎                                                 m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   f " F a i l e d   t o   d e l e t e   f i l e :   { e } " ) 
- ⏎ 
- ⏎                 b t n _ f r a m e   =   t k . F r a m e ( f r a m e ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 b t n _ f r a m e . p a c k ( f i l l = " x " ) 
- ⏎ 
- ⏎                 b t n _ o p e n   =   t k . B u t t o n ( b t n _ f r a m e ,   t e x t = " O p e n " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = o p e n _ s e l e c t e d ) 
- ⏎                 b t n _ c r e a t e _ f o l d e r   =   t k . B u t t o n ( b t n _ f r a m e ,   t e x t = " N e w   F o l d e r " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = c r e a t e _ f o l d e r ) 
- ⏎                 b t n _ c r e a t e _ f i l e   =   t k . B u t t o n ( b t n _ f r a m e ,   t e x t = " N e w   F i l e " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = c r e a t e _ f i l e ) 
- ⏎                 b t n _ d e l e t e   =   t k . B u t t o n ( b t n _ f r a m e ,   t e x t = " D e l e t e " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = d e l e t e _ s e l e c t e d ) 
- ⏎ 
- ⏎                 b t n _ o p e n . p a c k ( s i d e = " l e f t " ,   p a d x = 1 0 ,   p a d y = 5 ) 
- ⏎                 b t n _ c r e a t e _ f o l d e r . p a c k ( s i d e = " l e f t " ,   p a d x = 1 0 ,   p a d y = 5 ) 
- ⏎                 b t n _ c r e a t e _ f i l e . p a c k ( s i d e = " l e f t " ,   p a d x = 1 0 ,   p a d y = 5 ) 
- ⏎                 b t n _ d e l e t e . p a c k ( s i d e = " l e f t " ,   p a d x = 1 0 ,   p a d y = 5 ) 
- ⏎ 
- ⏎         #   - - - - - - - - - - - - - - - - -   S e c u r e   V a u l t   - - - - - - - - - - - - - - - - - 
- ⏎ 
- ⏎         d e f   o p e n _ v a u l t ( s e l f ) : 
- ⏎                 s e l f . c l e a r _ a p p _ a r e a ( ) 
- ⏎ 
- ⏎                 v a u l t _ d i r   =   o s . p a t h . j o i n ( s e l f . a p p d a t a _ d i r ,   " v a u l t " ) 
- ⏎                 e n s u r e _ d i r ( v a u l t _ d i r ) 
- ⏎                 p a s s w o r d _ f i l e   =   o s . p a t h . j o i n ( v a u l t _ d i r ,   " v a u l t _ p a s s . t x t " ) 
- ⏎ 
- ⏎                 f r a m e   =   t k . F r a m e ( s e l f . a p p _ a r e a ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 f r a m e . p a c k ( e x p a n d = T r u e ,   f i l l = " b o t h " ,   p a d x = 2 0 ,   p a d y = 2 0 ) 
- ⏎ 
- ⏎                 l b l   =   t k . L a b e l ( f r a m e ,   t e x t = " S e c u r e   V a u l t " ,   f g = " c y a n " ,   b g = " # 1 a 1 a 1 a " ,   f o n t = ( " S e g o e   U I " ,   2 0 ,   " b o l d " ) ) 
- ⏎                 l b l . p a c k ( p a d y = 1 0 ) 
- ⏎ 
- ⏎                 i f   n o t   o s . p a t h . e x i s t s ( p a s s w o r d _ f i l e ) : 
- ⏎                         #   S e t   p a s s w o r d 
- ⏎                         d e f   s e t _ p a s s w o r d ( ) : 
- ⏎                                 p w 1   =   p w _ e n t r y . g e t ( ) 
- ⏎                                 p w 2   =   p w _ c o n f i r m . g e t ( ) 
- ⏎                                 i f   n o t   p w 1   o r   n o t   p w 2 : 
- ⏎                                         m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   " P a s s w o r d   c a n n o t   b e   e m p t y " ) 
- ⏎                                         r e t u r n 
- ⏎                                 i f   p w 1   ! =   p w 2 : 
- ⏎                                         m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   " P a s s w o r d s   d o   n o t   m a t c h " ) 
- ⏎                                         r e t u r n 
- ⏎                                 w i t h   o p e n ( p a s s w o r d _ f i l e ,   " w " )   a s   f : 
- ⏎                                         f . w r i t e ( p w 1 ) 
- ⏎                                 m e s s a g e b o x . s h o w i n f o ( " S u c c e s s " ,   " P a s s w o r d   s e t .   R e s t a r t   v a u l t . " ) 
- ⏎                                 s e l f . o p e n _ v a u l t ( ) 
- ⏎ 
- ⏎                         p w _ l a b e l   =   t k . L a b e l ( f r a m e ,   t e x t = " S e t   V a u l t   P a s s w o r d : " ,   f g = " w h i t e " ,   b g = " # 1 a 1 a 1 a " ,   f o n t = ( " S e g o e   U I " ,   1 4 ) ) 
- ⏎                         p w _ l a b e l . p a c k ( p a d y = 5 ) 
- ⏎                         p w _ e n t r y   =   t k . E n t r y ( f r a m e ,   s h o w = " * " ,   f o n t = ( " S e g o e   U I " ,   1 4 ) ) 
- ⏎                         p w _ e n t r y . p a c k ( p a d y = 5 ) 
- ⏎                         p w _ c o n f i r m   =   t k . E n t r y ( f r a m e ,   s h o w = " * " ,   f o n t = ( " S e g o e   U I " ,   1 4 ) ) 
- ⏎                         p w _ c o n f i r m . p a c k ( p a d y = 5 ) 
- ⏎                         s e t _ b t n   =   t k . B u t t o n ( f r a m e ,   t e x t = " S e t   P a s s w o r d " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = s e t _ p a s s w o r d ) 
- ⏎                         s e t _ b t n . p a c k ( p a d y = 1 0 ) 
- ⏎ 
- ⏎                         r e t u r n 
- ⏎ 
- ⏎                 #   V a u l t   m a i n   U I 
- ⏎                 v a u l t _ p a t h   =   o s . p a t h . j o i n ( v a u l t _ d i r ,   " v a u l t _ f o l d e r " ) 
- ⏎                 e n s u r e _ d i r ( v a u l t _ p a t h ) 
- ⏎ 
- ⏎                 #   A u t h e n t i c a t e   u s e r 
- ⏎                 d e f   a u t h e n t i c a t e ( ) : 
- ⏎                         e n t e r e d _ p w   =   p w _ e n t r y . g e t ( ) 
- ⏎                         w i t h   o p e n ( p a s s w o r d _ f i l e ,   " r " )   a s   f : 
- ⏎                                 s a v e d _ p w   =   f . r e a d ( ) 
- ⏎                         i f   e n t e r e d _ p w   = =   s a v e d _ p w : 
- ⏎                                 a u t h _ f r a m e . p a c k _ f o r g e t ( ) 
- ⏎                                 v a u l t _ u i . p a c k ( f i l l = " b o t h " ,   e x p a n d = T r u e ) 
- ⏎                                 u p d a t e _ v a u l t _ l i s t ( ) 
- ⏎                         e l s e : 
- ⏎                                 m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   " I n c o r r e c t   P a s s w o r d " ) 
- ⏎ 
- ⏎                 a u t h _ f r a m e   =   t k . F r a m e ( f r a m e ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 a u t h _ f r a m e . p a c k ( ) 
- ⏎ 
- ⏎                 t k . L a b e l ( a u t h _ f r a m e ,   t e x t = " E n t e r   V a u l t   P a s s w o r d : " ,   f g = " w h i t e " ,   b g = " # 1 a 1 a 1 a " ,   f o n t = ( " S e g o e   U I " ,   1 4 ) ) . p a c k ( p a d y = 5 ) 
- ⏎                 p w _ e n t r y   =   t k . E n t r y ( a u t h _ f r a m e ,   s h o w = " * " ,   f o n t = ( " S e g o e   U I " ,   1 4 ) ) 
- ⏎                 p w _ e n t r y . p a c k ( p a d y = 5 ) 
- ⏎                 a u t h _ b t n   =   t k . B u t t o n ( a u t h _ f r a m e ,   t e x t = " U n l o c k   V a u l t " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = a u t h e n t i c a t e ) 
- ⏎                 a u t h _ b t n . p a c k ( p a d y = 1 0 ) 
- ⏎ 
- ⏎                 #   V a u l t   U I 
- ⏎                 v a u l t _ u i   =   t k . F r a m e ( f r a m e ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎ 
- ⏎                 v a u l t _ l i s t b o x   =   t k . L i s t b o x ( v a u l t _ u i ,   b g = " # 2 2 2 " ,   f g = " w h i t e " ,   f o n t = ( " S e g o e   U I " ,   1 2 ) ,   s e l e c t b a c k g r o u n d = " # 5 5 5 " ) 
- ⏎                 v a u l t _ l i s t b o x . p a c k ( f i l l = " b o t h " ,   e x p a n d = T r u e ,   p a d x = 1 0 ,   p a d y = 1 0 ) 
- ⏎ 
- ⏎                 d e f   u p d a t e _ v a u l t _ l i s t ( ) : 
- ⏎                         v a u l t _ l i s t b o x . d e l e t e ( 0 ,   " e n d " ) 
- ⏎                         t r y : 
- ⏎                                 f i l e s   =   o s . l i s t d i r ( v a u l t _ p a t h ) 
- ⏎                                 f i l e s . s o r t ( ) 
- ⏎                                 f o r   f   i n   f i l e s : 
- ⏎                                         v a u l t _ l i s t b o x . i n s e r t ( " e n d " ,   f ) 
- ⏎                         e x c e p t   E x c e p t i o n   a s   e : 
- ⏎                                 m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   f " E r r o r   r e a d i n g   v a u l t :   { e } " ) 
- ⏎ 
- ⏎                 d e f   a d d _ f i l e _ t o _ v a u l t ( ) : 
- ⏎                         p a t h   =   f i l e d i a l o g . a s k o p e n f i l e n a m e ( ) 
- ⏎                         i f   p a t h : 
- ⏎                                 t r y : 
- ⏎                                         f n a m e   =   o s . p a t h . b a s e n a m e ( p a t h ) 
- ⏎                                         s h u t i l . c o p y ( p a t h ,   o s . p a t h . j o i n ( v a u l t _ p a t h ,   f n a m e ) ) 
- ⏎                                         u p d a t e _ v a u l t _ l i s t ( ) 
- ⏎                                         m e s s a g e b o x . s h o w i n f o ( " S u c c e s s " ,   f " A d d e d   { f n a m e }   t o   v a u l t . " ) 
- ⏎                                 e x c e p t   E x c e p t i o n   a s   e : 
- ⏎                                         m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   f " F a i l e d   t o   a d d   f i l e :   { e } " ) 
- ⏎ 
- ⏎                 d e f   r e m o v e _ f i l e _ f r o m _ v a u l t ( ) : 
- ⏎                         s e l   =   v a u l t _ l i s t b o x . c u r s e l e c t i o n ( ) 
- ⏎                         i f   n o t   s e l : 
- ⏎                                 r e t u r n 
- ⏎                         f n a m e   =   v a u l t _ l i s t b o x . g e t ( s e l [ 0 ] ) 
- ⏎                         f p a t h   =   o s . p a t h . j o i n ( v a u l t _ p a t h ,   f n a m e ) 
- ⏎                         i f   m e s s a g e b o x . a s k y e s n o ( " C o n f i r m " ,   f " D e l e t e   ' { f n a m e } '   f r o m   v a u l t ? " ) : 
- ⏎                                 t r y : 
- ⏎                                         o s . r e m o v e ( f p a t h ) 
- ⏎                                         u p d a t e _ v a u l t _ l i s t ( ) 
- ⏎                                 e x c e p t   E x c e p t i o n   a s   e : 
- ⏎                                         m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   f " F a i l e d   t o   d e l e t e   f i l e :   { e } " ) 
- ⏎ 
- ⏎                 b t n _ f r a m e   =   t k . F r a m e ( v a u l t _ u i ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 b t n _ f r a m e . p a c k ( f i l l = " x " ) 
- ⏎ 
- ⏎                 a d d _ b t n   =   t k . B u t t o n ( b t n _ f r a m e ,   t e x t = " A d d   F i l e " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = a d d _ f i l e _ t o _ v a u l t ) 
- ⏎                 r e m o v e _ b t n   =   t k . B u t t o n ( b t n _ f r a m e ,   t e x t = " R e m o v e   F i l e " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = r e m o v e _ f i l e _ f r o m _ v a u l t ) 
- ⏎                 a d d _ b t n . p a c k ( s i d e = " l e f t " ,   p a d x = 1 0 ,   p a d y = 5 ) 
- ⏎                 r e m o v e _ b t n . p a c k ( s i d e = " l e f t " ,   p a d x = 1 0 ,   p a d y = 5 ) 
- ⏎ 
- ⏎         #   - - - - - - - - - - - - - - -   E x p e n s e   T r a c k e r   - - - - - - - - - - - - - - - - - 
- ⏎ 
- ⏎         d e f   o p e n _ e x p e n s e _ t r a c k e r ( s e l f ) : 
- ⏎                 s e l f . c l e a r _ a p p _ a r e a ( ) 
- ⏎ 
- ⏎                 f r a m e   =   t k . F r a m e ( s e l f . a p p _ a r e a ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 f r a m e . p a c k ( e x p a n d = T r u e ,   f i l l = " b o t h " ,   p a d x = 2 0 ,   p a d y = 2 0 ) 
- ⏎ 
- ⏎                 l b l   =   t k . L a b e l ( f r a m e ,   t e x t = " E x p e n s e   T r a c k e r " ,   f g = " c y a n " ,   b g = " # 1 a 1 a 1 a " ,   f o n t = ( " S e g o e   U I " ,   2 0 ,   " b o l d " ) ) 
- ⏎                 l b l . p a c k ( p a d y = 1 0 ) 
- ⏎ 
- ⏎                 #   L o a d   e x p e n s e s 
- ⏎                 e x p e n s e _ f i l e   =   o s . p a t h . j o i n ( s e l f . a p p d a t a _ d i r ,   " e x p e n s e s . j s o n " ) 
- ⏎                 i f   n o t   o s . p a t h . e x i s t s ( e x p e n s e _ f i l e ) : 
- ⏎                         w i t h   o p e n ( e x p e n s e _ f i l e ,   " w " )   a s   f : 
- ⏎                                 j s o n . d u m p ( [ ] ,   f ) 
- ⏎ 
- ⏎                 d e f   l o a d _ e x p e n s e s ( ) : 
- ⏎                         w i t h   o p e n ( e x p e n s e _ f i l e ,   " r " )   a s   f : 
- ⏎                                 r e t u r n   j s o n . l o a d ( f ) 
- ⏎ 
- ⏎                 d e f   s a v e _ e x p e n s e s ( d a t a ) : 
- ⏎                         w i t h   o p e n ( e x p e n s e _ f i l e ,   " w " )   a s   f : 
- ⏎                                 j s o n . d u m p ( d a t a ,   f ) 
- ⏎ 
- ⏎                 e x p e n s e s   =   l o a d _ e x p e n s e s ( ) 
- ⏎ 
- ⏎                 #   E x p e n s e   L i s t b o x 
- ⏎                 l i s t b o x   =   t k . L i s t b o x ( f r a m e ,   b g = " # 2 2 2 " ,   f g = " w h i t e " ,   f o n t = ( " S e g o e   U I " ,   1 2 ) ,   s e l e c t b a c k g r o u n d = " # 5 5 5 " ) 
- ⏎                 l i s t b o x . p a c k ( f i l l = " b o t h " ,   e x p a n d = T r u e ,   p a d x = 1 0 ,   p a d y = 1 0 ) 
- ⏎ 
- ⏎                 d e f   u p d a t e _ l i s t b o x ( ) : 
- ⏎                         l i s t b o x . d e l e t e ( 0 ,   " e n d " ) 
- ⏎                         f o r   e   i n   e x p e n s e s : 
- ⏎                                 l i s t b o x . i n s e r t ( " e n d " ,   f " { e [ ' d a t e ' ] }   -   { e [ ' c a t e g o r y ' ] } :   ₹ { e [ ' a m o u n t ' ] }   ( { e [ ' d e s c ' ] } ) " ) 
- ⏎ 
- ⏎                 u p d a t e _ l i s t b o x ( ) 
- ⏎ 
- ⏎                 d e f   a d d _ e x p e n s e ( ) : 
- ⏎                         a m o u n t   =   s i m p l e d i a l o g . a s k f l o a t ( " A d d   E x p e n s e " ,   " E n t e r   a m o u n t   ( ₹ ) : " ) 
- ⏎                         i f   a m o u n t   i s   N o n e   o r   a m o u n t   < =   0 : 
- ⏎                                 r e t u r n 
- ⏎                         c a t e g o r y   =   s i m p l e d i a l o g . a s k s t r i n g ( " C a t e g o r y " ,   " E n t e r   c a t e g o r y   ( e . g .   F o o d ,   T r a v e l ) : " ) 
- ⏎                         i f   n o t   c a t e g o r y : 
- ⏎                                 c a t e g o r y   =   " M i s c " 
- ⏎                         d e s c   =   s i m p l e d i a l o g . a s k s t r i n g ( " D e s c r i p t i o n " ,   " E n t e r   d e s c r i p t i o n : " ) 
- ⏎                         d a t e   =   d a t e t i m e . d a t e t i m e . n o w ( ) . s t r f t i m e ( " % Y - % m - % d   % H : % M " ) 
- ⏎                         e x p e n s e s . a p p e n d ( { " a m o u n t " :   a m o u n t ,   " c a t e g o r y " :   c a t e g o r y ,   " d e s c " :   d e s c   i f   d e s c   e l s e   " " ,   " d a t e " :   d a t e } ) 
- ⏎                         s a v e _ e x p e n s e s ( e x p e n s e s ) 
- ⏎                         u p d a t e _ l i s t b o x ( ) 
- ⏎ 
- ⏎                 d e f   d e l e t e _ e x p e n s e ( ) : 
- ⏎                         s e l   =   l i s t b o x . c u r s e l e c t i o n ( ) 
- ⏎                         i f   n o t   s e l : 
- ⏎                                 r e t u r n 
- ⏎                         i f   m e s s a g e b o x . a s k y e s n o ( " C o n f i r m " ,   " D e l e t e   s e l e c t e d   e x p e n s e ? " ) : 
- ⏎                                 e x p e n s e s . p o p ( s e l [ 0 ] ) 
- ⏎                                 s a v e _ e x p e n s e s ( e x p e n s e s ) 
- ⏎                                 u p d a t e _ l i s t b o x ( ) 
- ⏎ 
- ⏎                 b t n _ f r a m e   =   t k . F r a m e ( f r a m e ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 b t n _ f r a m e . p a c k ( f i l l = " x " ) 
- ⏎ 
- ⏎                 a d d _ b t n   =   t k . B u t t o n ( b t n _ f r a m e ,   t e x t = " A d d   E x p e n s e " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = a d d _ e x p e n s e ) 
- ⏎                 d e l _ b t n   =   t k . B u t t o n ( b t n _ f r a m e ,   t e x t = " D e l e t e   E x p e n s e " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = d e l e t e _ e x p e n s e ) 
- ⏎                 a d d _ b t n . p a c k ( s i d e = " l e f t " ,   p a d x = 1 0 ,   p a d y = 5 ) 
- ⏎                 d e l _ b t n . p a c k ( s i d e = " l e f t " ,   p a d x = 1 0 ,   p a d y = 5 ) 
- ⏎ 
- ⏎         #   - - - - - - - - - - - - - - - - - -   R e m i n d e r   - - - - - - - - - - - - - - - - - - - - 
- ⏎ 
- ⏎         d e f   o p e n _ r e m i n d e r ( s e l f ) : 
- ⏎                 s e l f . c l e a r _ a p p _ a r e a ( ) 
- ⏎ 
- ⏎                 f r a m e   =   t k . F r a m e ( s e l f . a p p _ a r e a ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 f r a m e . p a c k ( e x p a n d = T r u e ,   f i l l = " b o t h " ,   p a d x = 2 0 ,   p a d y = 2 0 ) 
- ⏎ 
- ⏎                 l b l   =   t k . L a b e l ( f r a m e ,   t e x t = " R e m i n d e r " ,   f g = " c y a n " ,   b g = " # 1 a 1 a 1 a " ,   f o n t = ( " S e g o e   U I " ,   2 0 ,   " b o l d " ) ) 
- ⏎                 l b l . p a c k ( p a d y = 1 0 ) 
- ⏎ 
- ⏎                 r e m i n d e r _ f i l e   =   o s . p a t h . j o i n ( s e l f . a p p d a t a _ d i r ,   " r e m i n d e r s . j s o n " ) 
- ⏎                 i f   n o t   o s . p a t h . e x i s t s ( r e m i n d e r _ f i l e ) : 
- ⏎                         w i t h   o p e n ( r e m i n d e r _ f i l e ,   " w " )   a s   f : 
- ⏎                                 j s o n . d u m p ( [ ] ,   f ) 
- ⏎ 
- ⏎                 d e f   l o a d _ r e m i n d e r s ( ) : 
- ⏎                         w i t h   o p e n ( r e m i n d e r _ f i l e ,   " r " )   a s   f : 
- ⏎                                 r e t u r n   j s o n . l o a d ( f ) 
- ⏎ 
- ⏎                 d e f   s a v e _ r e m i n d e r s ( d a t a ) : 
- ⏎                         w i t h   o p e n ( r e m i n d e r _ f i l e ,   " w " )   a s   f : 
- ⏎                                 j s o n . d u m p ( d a t a ,   f ) 
- ⏎ 
- ⏎                 r e m i n d e r s   =   l o a d _ r e m i n d e r s ( ) 
- ⏎ 
- ⏎                 l i s t b o x   =   t k . L i s t b o x ( f r a m e ,   b g = " # 2 2 2 " ,   f g = " w h i t e " ,   f o n t = ( " S e g o e   U I " ,   1 2 ) ,   s e l e c t b a c k g r o u n d = " # 5 5 5 " ) 
- ⏎                 l i s t b o x . p a c k ( f i l l = " b o t h " ,   e x p a n d = T r u e ,   p a d x = 1 0 ,   p a d y = 1 0 ) 
- ⏎ 
- ⏎                 d e f   u p d a t e _ l i s t b o x ( ) : 
- ⏎                         l i s t b o x . d e l e t e ( 0 ,   " e n d " ) 
- ⏎                         f o r   r   i n   r e m i n d e r s : 
- ⏎                                 l i s t b o x . i n s e r t ( " e n d " ,   f " { r [ ' d a t e t i m e ' ] }   -   { r [ ' t e x t ' ] } " ) 
- ⏎ 
- ⏎                 u p d a t e _ l i s t b o x ( ) 
- ⏎ 
- ⏎                 d e f   a d d _ r e m i n d e r ( ) : 
- ⏎                         d t _ s t r   =   s i m p l e d i a l o g . a s k s t r i n g ( " A d d   R e m i n d e r " ,   " E n t e r   d a t e   a n d   t i m e   ( Y Y Y Y - M M - D D   H H : M M ) : " ) 
- ⏎                         t r y : 
- ⏎                                 d t   =   d a t e t i m e . d a t e t i m e . s t r p t i m e ( d t _ s t r ,   " % Y - % m - % d   % H : % M " ) 
- ⏎                         e x c e p t   E x c e p t i o n : 
- ⏎                                 m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   " I n v a l i d   d a t e t i m e   f o r m a t " ) 
- ⏎                                 r e t u r n 
- ⏎                         t e x t   =   s i m p l e d i a l o g . a s k s t r i n g ( " R e m i n d e r   T e x t " ,   " E n t e r   r e m i n d e r   t e x t : " ) 
- ⏎                         i f   n o t   t e x t : 
- ⏎                                 r e t u r n 
- ⏎                         r e m i n d e r s . a p p e n d ( { " d a t e t i m e " :   d t _ s t r ,   " t e x t " :   t e x t } ) 
- ⏎                         r e m i n d e r s . s o r t ( k e y = l a m b d a   x :   x [ " d a t e t i m e " ] ) 
- ⏎                         s a v e _ r e m i n d e r s ( r e m i n d e r s ) 
- ⏎                         u p d a t e _ l i s t b o x ( ) 
- ⏎ 
- ⏎                 d e f   d e l e t e _ r e m i n d e r ( ) : 
- ⏎                         s e l   =   l i s t b o x . c u r s e l e c t i o n ( ) 
- ⏎                         i f   n o t   s e l : 
- ⏎                                 r e t u r n 
- ⏎                         i f   m e s s a g e b o x . a s k y e s n o ( " C o n f i r m " ,   " D e l e t e   s e l e c t e d   r e m i n d e r ? " ) : 
- ⏎                                 r e m i n d e r s . p o p ( s e l [ 0 ] ) 
- ⏎                                 s a v e _ r e m i n d e r s ( r e m i n d e r s ) 
- ⏎                                 u p d a t e _ l i s t b o x ( ) 
- ⏎ 
- ⏎                 b t n _ f r a m e   =   t k . F r a m e ( f r a m e ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 b t n _ f r a m e . p a c k ( f i l l = " x " ) 
- ⏎ 
- ⏎                 a d d _ b t n   =   t k . B u t t o n ( b t n _ f r a m e ,   t e x t = " A d d   R e m i n d e r " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = a d d _ r e m i n d e r ) 
- ⏎                 d e l _ b t n   =   t k . B u t t o n ( b t n _ f r a m e ,   t e x t = " D e l e t e   R e m i n d e r " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = d e l e t e _ r e m i n d e r ) 
- ⏎                 a d d _ b t n . p a c k ( s i d e = " l e f t " ,   p a d x = 1 0 ,   p a d y = 5 ) 
- ⏎                 d e l _ b t n . p a c k ( s i d e = " l e f t " ,   p a d x = 1 0 ,   p a d y = 5 ) 
- ⏎ 
- ⏎                 #   R e m i n d e r   c h e c k   t h r e a d 
- ⏎                 d e f   r e m i n d e r _ c h e c k _ l o o p ( ) : 
- ⏎                         w h i l e   T r u e : 
- ⏎                                 n o w   =   d a t e t i m e . d a t e t i m e . n o w ( ) 
- ⏎                                 f o r   r   i n   r e m i n d e r s [ : ] : 
- ⏎                                         t r y : 
- ⏎                                                 d t   =   d a t e t i m e . d a t e t i m e . s t r p t i m e ( r [ " d a t e t i m e " ] ,   " % Y - % m - % d   % H : % M " ) 
- ⏎                                                 i f   d t   < =   n o w : 
- ⏎                                                         m e s s a g e b o x . s h o w i n f o ( " R e m i n d e r " ,   f " R e m i n d e r :   { r [ ' t e x t ' ] } " ) 
- ⏎                                                         r e m i n d e r s . r e m o v e ( r ) 
- ⏎                                                         s a v e _ r e m i n d e r s ( r e m i n d e r s ) 
- ⏎                                                         s e l f . a f t e r ( 0 ,   u p d a t e _ l i s t b o x ) 
- ⏎                                         e x c e p t : 
- ⏎                                                 p a s s 
- ⏎                                 t h r e a d i n g . E v e n t ( ) . w a i t ( 6 0 ) 
- ⏎ 
- ⏎                 t h r e a d i n g . T h r e a d ( t a r g e t = r e m i n d e r _ c h e c k _ l o o p ,   d a e m o n = T r u e ) . s t a r t ( ) 
- ⏎ 
- ⏎         #   - - - - - - - - - - - - - - - -   C h a t b o t   - - - - - - - - - - - - - - - - - - - - - - 
- ⏎ 
- ⏎         d e f   o p e n _ c h a t b o t ( s e l f ) : 
- ⏎                 s e l f . c l e a r _ a p p _ a r e a ( ) 
- ⏎ 
- ⏎                 f r a m e   =   t k . F r a m e ( s e l f . a p p _ a r e a ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 f r a m e . p a c k ( e x p a n d = T r u e ,   f i l l = " b o t h " ,   p a d x = 2 0 ,   p a d y = 2 0 ) 
- ⏎ 
- ⏎                 l b l   =   t k . L a b e l ( f r a m e ,   t e x t = " C h a t b o t " ,   f g = " c y a n " ,   b g = " # 1 a 1 a 1 a " ,   f o n t = ( " S e g o e   U I " ,   2 0 ,   " b o l d " ) ) 
- ⏎                 l b l . p a c k ( p a d y = 1 0 ) 
- ⏎ 
- ⏎                 c h a t _ l o g   =   t k . T e x t ( f r a m e ,   b g = " # 2 2 2 " ,   f g = " w h i t e " ,   f o n t = ( " S e g o e   U I " ,   1 2 ) ,   s t a t e = " d i s a b l e d " ,   w r a p = " w o r d " ) 
- ⏎                 c h a t _ l o g . p a c k ( e x p a n d = T r u e ,   f i l l = " b o t h " ,   p a d x = 5 ,   p a d y = 5 ) 
- ⏎ 
- ⏎                 e n t r y _ v a r   =   t k . S t r i n g V a r ( ) 
- ⏎                 e n t r y   =   t k . E n t r y ( f r a m e ,   t e x t v a r i a b l e = e n t r y _ v a r ,   f o n t = ( " S e g o e   U I " ,   1 4 ) ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   i n s e r t b a c k g r o u n d = " w h i t e " ) 
- ⏎                 e n t r y . p a c k ( f i l l = " x " ,   p a d x = 5 ,   p a d y = 5 ) 
- ⏎ 
- ⏎                 d e f   b o t _ r e s p o n s e ( m s g ) : 
- ⏎                         m s g   =   m s g . l o w e r ( ) 
- ⏎                         i f   " h e l l o "   i n   m s g   o r   " h i "   i n   m s g : 
- ⏎                                 r e t u r n   " H e l l o !   H o w   c a n   I   h e l p   y o u   t o d a y ? " 
- ⏎                         e l i f   " h o w   a r e   y o u "   i n   m s g : 
- ⏎                                 r e t u r n   " I ' m   a   p r o g r a m ,   s o   a l w a y s   g o o d ! " 
- ⏎                         e l i f   " y o u r   n a m e "   i n   m s g : 
- ⏎                                 r e t u r n   " I   a m   N e u r a D e s k   C h a t b o t . " 
- ⏎                         e l i f   " t i m e "   i n   m s g : 
- ⏎                                 r e t u r n   f " C u r r e n t   t i m e   i s   { d a t e t i m e . d a t e t i m e . n o w ( ) . s t r f t i m e ( ' % H : % M : % S ' ) } . " 
- ⏎                         e l i f   " d a t e "   i n   m s g : 
- ⏎                                 r e t u r n   f " T o d a y ' s   d a t e   i s   { d a t e t i m e . d a t e t i m e . n o w ( ) . s t r f t i m e ( ' % Y - % m - % d ' ) } . " 
- ⏎                         e l s e : 
- ⏎                                 r e t u r n   " S o r r y ,   I   d i d n ' t   u n d e r s t a n d   t h a t . " 
- ⏎ 
- ⏎                 d e f   s e n d _ m s g ( e v e n t = N o n e ) : 
- ⏎                         m s g   =   e n t r y _ v a r . g e t ( ) . s t r i p ( ) 
- ⏎                         i f   n o t   m s g : 
- ⏎                                 r e t u r n 
- ⏎                         c h a t _ l o g . c o n f i g ( s t a t e = " n o r m a l " ) 
- ⏎                         c h a t _ l o g . i n s e r t ( " e n d " ,   f " Y o u :   { m s g } \ n " ) 
- ⏎                         r e s p o n s e   =   b o t _ r e s p o n s e ( m s g ) 
- ⏎                         c h a t _ l o g . i n s e r t ( " e n d " ,   f " B o t :   { r e s p o n s e } \ n \ n " ) 
- ⏎                         c h a t _ l o g . c o n f i g ( s t a t e = " d i s a b l e d " ) 
- ⏎                         c h a t _ l o g . s e e ( " e n d " ) 
- ⏎                         e n t r y _ v a r . s e t ( " " ) 
- ⏎ 
- ⏎                 e n t r y . b i n d ( " < R e t u r n > " ,   s e n d _ m s g ) 
- ⏎ 
- ⏎                 s e n d _ b t n   =   t k . B u t t o n ( f r a m e ,   t e x t = " S e n d " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ,   c o m m a n d = s e n d _ m s g ) 
- ⏎                 s e n d _ b t n . p a c k ( p a d y = 5 ) 
- ⏎ 
- ⏎         #   - - - - - - - - - - - - - - - -   A I   A s s i s t a n t   - - - - - - - - - - - - - - - - 
- ⏎ 
- ⏎         d e f   o p e n _ a i _ a s s i s t a n t ( s e l f ) : 
- ⏎                 s e l f . c l e a r _ a p p _ a r e a ( ) 
- ⏎ 
- ⏎                 f r a m e   =   t k . F r a m e ( s e l f . a p p _ a r e a ,   b g = " # 1 a 1 a 1 a " ) 
- ⏎                 f r a m e . p a c k ( e x p a n d = T r u e ,   f i l l = " b o t h " ,   p a d x = 2 0 ,   p a d y = 2 0 ) 
- ⏎ 
- ⏎                 l b l   =   t k . L a b e l ( f r a m e ,   t e x t = " A I   A s s i s t a n t   ( O f f l i n e ) " ,   f g = " c y a n " ,   b g = " # 1 a 1 a 1 a " ,   f o n t = ( " S e g o e   U I " ,   2 0 ,   " b o l d " ) ) 
- ⏎                 l b l . p a c k ( p a d y = 1 0 ) 
- ⏎ 
- ⏎                 t e x t _ o u t p u t   =   t k . T e x t ( f r a m e ,   b g = " # 2 2 2 " ,   f g = " w h i t e " ,   f o n t = ( " S e g o e   U I " ,   1 2 ) ,   s t a t e = " d i s a b l e d " ,   h e i g h t = 1 5 ) 
- ⏎                 t e x t _ o u t p u t . p a c k ( f i l l = " b o t h " ,   p a d x = 1 0 ,   p a d y = 1 0 ) 
- ⏎ 
- ⏎                 d e f   a p p e n d _ t e x t ( t x t ) : 
- ⏎                         t e x t _ o u t p u t . c o n f i g ( s t a t e = " n o r m a l " ) 
- ⏎                         t e x t _ o u t p u t . i n s e r t ( " e n d " ,   t x t   +   " \ n " ) 
- ⏎                         t e x t _ o u t p u t . c o n f i g ( s t a t e = " d i s a b l e d " ) 
- ⏎                         t e x t _ o u t p u t . s e e ( " e n d " ) 
- ⏎ 
- ⏎                 d e f   h a n d l e _ c o m m a n d ( c m d ) : 
- ⏎                         c m d   =   c m d . l o w e r ( ) 
- ⏎                         a p p e n d _ t e x t ( f " U s e r :   { c m d } " ) 
- ⏎                         i f   " o p e n   c a l c u l a t o r "   i n   c m d : 
- ⏎                                 a p p e n d _ t e x t ( " O p e n i n g   C a l c u l a t o r . . . " ) 
- ⏎                                 s e l f . o p e n _ c a l c u l a t o r ( ) 
- ⏎                         e l i f   " o p e n   n o t e s "   i n   c m d : 
- ⏎                                 a p p e n d _ t e x t ( " O p e n i n g   N o t e s . . . " ) 
- ⏎                                 s e l f . o p e n _ n o t e s ( ) 
- ⏎                         e l i f   " t i m e "   i n   c m d : 
- ⏎                                 a p p e n d _ t e x t ( f " C u r r e n t   t i m e :   { d a t e t i m e . d a t e t i m e . n o w ( ) . s t r f t i m e ( ' % H : % M : % S ' ) } " ) 
- ⏎                         e l i f   " d a t e "   i n   c m d : 
- ⏎                                 a p p e n d _ t e x t ( f " T o d a y ' s   d a t e :   { d a t e t i m e . d a t e t i m e . n o w ( ) . s t r f t i m e ( ' % Y - % m - % d ' ) } " ) 
- ⏎                         e l i f   " e x i t "   i n   c m d   o r   " c l o s e "   i n   c m d : 
- ⏎                                 a p p e n d _ t e x t ( " G o o d b y e ! " ) 
- ⏎                                 s e l f . q u i t ( ) 
- ⏎                         e l s e : 
- ⏎                                 a p p e n d _ t e x t ( " S o r r y ,   c o m m a n d   n o t   r e c o g n i z e d . " ) 
- ⏎ 
- ⏎                 e n t r y _ v a r   =   t k . S t r i n g V a r ( ) 
- ⏎                 e n t r y   =   t k . E n t r y ( f r a m e ,   t e x t v a r i a b l e = e n t r y _ v a r ,   f o n t = ( " S e g o e   U I " ,   1 4 ) ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   i n s e r t b a c k g r o u n d = " w h i t e " ) 
- ⏎                 e n t r y . p a c k ( f i l l = " x " ,   p a d x = 1 0 ,   p a d y = 5 ) 
- ⏎ 
- ⏎                 d e f   o n _ e n t e r ( e v e n t = N o n e ) : 
- ⏎                         c m d   =   e n t r y _ v a r . g e t ( ) . s t r i p ( ) 
- ⏎                         i f   n o t   c m d : 
- ⏎                                 r e t u r n 
- ⏎                         h a n d l e _ c o m m a n d ( c m d ) 
- ⏎                         e n t r y _ v a r . s e t ( " " ) 
- ⏎ 
- ⏎                 e n t r y . b i n d ( " < R e t u r n > " ,   o n _ e n t e r ) 
- ⏎ 
- ⏎                 s p e a k _ b t n   =   t k . B u t t o n ( f r a m e ,   t e x t = " S p e a k   C o m m a n d " ,   b g = " # 3 3 3 " ,   f g = " w h i t e " ,   r e l i e f = " f l a t " ) 
- ⏎                 s p e a k _ b t n . p a c k ( p a d y = 5 ) 
- ⏎ 
- ⏎                 d e f   v o i c e _ c o m m a n d ( ) : 
- ⏎                         i f   p y t t s x 3   i s   N o n e   o r   s r   i s   N o n e : 
- ⏎                                 m e s s a g e b o x . s h o w e r r o r ( " E r r o r " ,   " V o i c e   f e a t u r e s   r e q u i r e   p y t t s x 3   a n d   S p e e c h R e c o g n i t i o n   p a c k a g e s . " ) 
- ⏎                                 r e t u r n 
- ⏎                         a p p e n d _ t e x t ( " L i s t e n i n g . . . " ) 
- ⏎                         t e x t   =   l i s t e n ( ) 
- ⏎                         i f   t e x t : 
- ⏎                                 a p p e n d _ t e x t ( f " R e c o g n i z e d :   { t e x t } " ) 
- ⏎                                 h a n d l e _ c o m m a n d ( t e x t ) 
- ⏎                         e l s e : 
- ⏎                                 a p p e n d _ t e x t ( " S o r r y ,   c o u l d   n o t   u n d e r s t a n d   v o i c e   i n p u t . " ) 
- ⏎ 
- ⏎                 s p e a k _ b t n . c o n f i g ( c o m m a n d = v o i c e _ c o m m a n d ) 
- ⏎ 
- ⏎ #   R u n   a p p l i c a t i o n 
- ⏎ i f   _ _ n a m e _ _   = =   " _ _ m a i n _ _ " : 
- ⏎         a p p   =   N e u r a D e s k ( ) 
- ⏎         a p p . m a i n l o o p ( ) 
- ⏎
- [2025-06-16 21:48:16] A I   D o u b t   S o l v e r ⏎ L e a r n   B y   T o p i c   ( J i s m e   k i   h a r   s u b j e c t   s e   s a m e   1 0 0 0 0 0   t o p i c s   k e   e x p l a i n a t i o n s   s a v e d   h o ) ⏎ P r a c t i c e   Q U I Z   ( I S M E   A P A N   W O   1 0 0 0 0 0   Q u e s t i o n s   m e i n   s e   p u c h e n g e ) ⏎ F I r   P r o g r e s s ⏎ F i r   U p l o a d   P D F   Q u e s t i o n ( T a a k i   U s m e   s e   a p a n   q u e s t i o n s   k o   e x t r a c t   k r k e   u n k e   a n s w e r   n i k a a l e ) ⏎ S t u d y   T i m e   T a b l e  
-[2025-06-16 22:03:32] i m p o r t   o s  ⏎ i m p o r t   j s o n  ⏎ i m p o r t   r a n d o m  ⏎ i m p o r t   r e  ⏎ f r o m   d i f f l i b   i m p o r t   S e q u e n c e M a t c h e r  ⏎  ⏎ t r y :  ⏎         i m p o r t   f i t z     #   P y M u P D F  ⏎         p d f _ l i b _ a v a i l a b l e   =   T r u e  ⏎ e x c e p t   I m p o r t E r r o r :  ⏎         p d f _ l i b _ a v a i l a b l e   =   F a l s e  ⏎  ⏎ d e f   l o a d _ a l l _ d a t a ( ) :  ⏎         d a t a   =   { }  ⏎         f o r   c l a s s _ n a m e   i n   [ ' C l a s s   8 ' ,   ' C l a s s   9 ' ,   ' C l a s s   1 0 ' ] :  ⏎                 d a t a [ c l a s s _ n a m e ]   =   { }  ⏎                 f o r   s u b j e c t   i n   [ ' m a t h s ' ,   ' s c i e n c e ' ,   ' s s t ' ,   ' e n g l i s h ' ,   ' c o m p u t e r ' ] :  ⏎                         f i l e _ p a t h   =   f " { c l a s s _ n a m e } / { s u b j e c t } . j s o n "  ⏎                         i f   o s . p a t h . e x i s t s ( f i l e _ p a t h ) :  ⏎                                 w i t h   o p e n ( f i l e _ p a t h ,   ' r ' ,   e n c o d i n g = ' u t f - 8 ' )   a s   f :  ⏎                                         d a t a [ c l a s s _ n a m e ] [ s u b j e c t ]   =   j s o n . l o a d ( f )  ⏎                         e l s e :  ⏎                                 d a t a [ c l a s s _ n a m e ] [ s u b j e c t ]   =   [ ]  ⏎         r e t u r n   d a t a  ⏎  ⏎ d e f   s i m i l a r ( a ,   b ) :  ⏎         r e t u r n   S e q u e n c e M a t c h e r ( N o n e ,   a . l o w e r ( ) ,   b . l o w e r ( ) ) . r a t i o ( )  ⏎  ⏎ d e f   a i _ d o u b t _ s o l v e r ( d a t a ) :  ⏎         q u e r y   =   i n p u t ( " 🧠   E n t e r   y o u r   d o u b t :   " )  ⏎         b e s t _ m a t c h   =   N o n e  ⏎         b e s t _ r a t i o   =   0  ⏎         f o r   c l a s s _ n a m e   i n   d a t a :  ⏎                 f o r   s u b j e c t   i n   d a t a [ c l a s s _ n a m e ] :  ⏎                         f o r   i t e m   i n   d a t a [ c l a s s _ n a m e ] [ s u b j e c t ] :  ⏎                                 r a t i o   =   s i m i l a r ( q u e r y ,   i t e m [ ' q u e s t i o n ' ] )  ⏎                                 i f   r a t i o   >   b e s t _ r a t i o :  ⏎                                         b e s t _ r a t i o   =   r a t i o  ⏎                                         b e s t _ m a t c h   =   i t e m  ⏎         i f   b e s t _ r a t i o   >   0 . 5 :  ⏎                 p r i n t ( f " \ n 📖   B e s t   M a t c h   F o u n d : \ n Q :   { b e s t _ m a t c h [ ' q u e s t i o n ' ] } \ n A :   { b e s t _ m a t c h [ ' a n s w e r ' ] } \ n E x p l a n a t i o n :   { b e s t _ m a t c h [ ' e x p l a n a t i o n ' ] } \ n " )  ⏎         e l s e :  ⏎                 p r i n t ( " ❌   S o r r y ,   n o   r e l e v a n t   a n s w e r   f o u n d . " )  ⏎  ⏎ d e f   l e a r n _ b y _ t o p i c ( d a t a ) :  ⏎         t o p i c   =   i n p u t ( " 📘   E n t e r   t o p i c   t o   l e a r n :   " )  ⏎         f o u n d   =   F a l s e  ⏎         f o r   c l a s s _ n a m e   i n   d a t a :  ⏎                 f o r   s u b j e c t   i n   d a t a [ c l a s s _ n a m e ] :  ⏎                         f o r   i t e m   i n   d a t a [ c l a s s _ n a m e ] [ s u b j e c t ] :  ⏎                                 i f   t o p i c . l o w e r ( )   i n   i t e m . g e t ( ' c h a p t e r ' , ' ' ) . l o w e r ( )   o r   a n y ( t o p i c . l o w e r ( )   i n   t a g . l o w e r ( )   f o r   t a g   i n   i t e m . g e t ( ' t a g s ' ,   [ ] ) ) :  ⏎                                         p r i n t ( f " \ n 🔍   T o p i c   F o u n d   i n   { c l a s s _ n a m e } / { s u b j e c t } : \ n C h a p t e r :   { i t e m [ ' c h a p t e r ' ] } \ n E x p l a n a t i o n :   { i t e m [ ' e x p l a n a t i o n ' ] } " )  ⏎                                         f o u n d   =   T r u e  ⏎         i f   n o t   f o u n d :  ⏎                 p r i n t ( " ❌   T o p i c   n o t   f o u n d . " )  ⏎  ⏎ d e f   p r a c t i c e _ q u i z ( d a t a ,   p r o g r e s s _ f i l e ) :  ⏎         c l a s s _ n a m e   =   i n p u t ( " E n t e r   c l a s s   ( C l a s s   8 / C l a s s   9 / C l a s s   1 0 ) :   " ) . s t r i p ( )  ⏎         s u b j e c t   =   i n p u t ( " E n t e r   s u b j e c t   ( m a t h s / s c i e n c e / s s t / e n g l i s h / c o m p u t e r ) :   " ) . s t r i p ( ) . l o w e r ( )  ⏎         i f   c l a s s _ n a m e   n o t   i n   d a t a   o r   s u b j e c t   n o t   i n   d a t a [ c l a s s _ n a m e ] :  ⏎                 p r i n t ( " ❌   I n v a l i d   s e l e c t i o n . " )  ⏎                 r e t u r n  ⏎  ⏎         q u e s t i o n s   =   r a n d o m . s a m p l e ( d a t a [ c l a s s _ n a m e ] [ s u b j e c t ] ,   m i n ( 5 ,   l e n ( d a t a [ c l a s s _ n a m e ] [ s u b j e c t ] ) ) )  ⏎         c o r r e c t   =   0  ⏎         f o r   q   i n   q u e s t i o n s :  ⏎                 p r i n t ( f " \ n Q :   { q [ ' q u e s t i o n ' ] } " )  ⏎                 a n s   =   i n p u t ( " Y o u r   A n s w e r :   " )  ⏎                 i f   s i m i l a r ( a n s . s t r i p ( ) ,   q [ ' a n s w e r ' ] . s t r i p ( ) )   >   0 . 7 :  ⏎                         p r i n t ( " ✅   C o r r e c t ! " )  ⏎                         c o r r e c t   + =   1  ⏎                 e l s e :  ⏎                         p r i n t ( f " ❌   I n c o r r e c t !   C o r r e c t   A n s w e r :   { q [ ' a n s w e r ' ] } " )  ⏎                 p r i n t ( " - "   *   4 0 )  ⏎  ⏎         t r y :  ⏎                 w i t h   o p e n ( p r o g r e s s _ f i l e ,   ' r ' ,   e n c o d i n g = ' u t f - 8 ' )   a s   f :  ⏎                         p r o g r e s s   =   j s o n . l o a d ( f )  ⏎         e x c e p t :  ⏎                 p r o g r e s s   =   { }  ⏎  ⏎         i f   c l a s s _ n a m e   n o t   i n   p r o g r e s s :  ⏎                 p r o g r e s s [ c l a s s _ n a m e ]   =   { }  ⏎         i f   s u b j e c t   n o t   i n   p r o g r e s s [ c l a s s _ n a m e ] :  ⏎                 p r o g r e s s [ c l a s s _ n a m e ] [ s u b j e c t ]   =   { " q u i z z e s _ t a k e n " :   0 ,   " c o r r e c t " :   0 ,   " w r o n g " :   0 }  ⏎  ⏎         p r o g r e s s [ c l a s s _ n a m e ] [ s u b j e c t ] [ " q u i z z e s _ t a k e n " ]   + =   1  ⏎         p r o g r e s s [ c l a s s _ n a m e ] [ s u b j e c t ] [ " c o r r e c t " ]   + =   c o r r e c t  ⏎         p r o g r e s s [ c l a s s _ n a m e ] [ s u b j e c t ] [ " w r o n g " ]   + =   5   -   c o r r e c t  ⏎  ⏎         w i t h   o p e n ( p r o g r e s s _ f i l e ,   ' w ' ,   e n c o d i n g = ' u t f - 8 ' )   a s   f :  ⏎                 j s o n . d u m p ( p r o g r e s s ,   f ,   i n d e n t = 4 )  ⏎  ⏎         p r i n t ( f " 🎯   Y o u   g o t   { c o r r e c t } / 5   c o r r e c t . " )  ⏎  ⏎ d e f   v i e w _ p r o g r e s s ( p r o g r e s s _ f i l e ) :  ⏎         t r y :  ⏎                 w i t h   o p e n ( p r o g r e s s _ f i l e ,   ' r ' ,   e n c o d i n g = ' u t f - 8 ' )   a s   f :  ⏎                         p r o g r e s s   =   j s o n . l o a d ( f )  ⏎                         f o r   c l a s s _ n a m e ,   s u b j e c t s   i n   p r o g r e s s . i t e m s ( ) :  ⏎                                 p r i n t ( f " \ n 📘   { c l a s s _ n a m e } " )  ⏎                                 f o r   s u b j e c t ,   s t a t s   i n   s u b j e c t s . i t e m s ( ) :  ⏎                                         t o t a l   =   s t a t s [ ' c o r r e c t ' ]   +   s t a t s [ ' w r o n g ' ]  ⏎                                         s c o r e   =   ( s t a t s [ ' c o r r e c t ' ]   /   t o t a l )   *   1 0 0   i f   t o t a l   e l s e   0  ⏎                                         p r i n t ( f "     📗   { s u b j e c t . c a p i t a l i z e ( ) } :   { s c o r e : . 2 f } %   |   Q u i z z e s :   { s t a t s [ ' q u i z z e s _ t a k e n ' ] } " )  ⏎         e x c e p t :  ⏎                 p r i n t ( " ❌   N o   p r o g r e s s   d a t a   f o u n d . " )  ⏎  ⏎ d e f   g e n e r a t e _ t i m e t a b l e ( ) :  ⏎         s u b j e c t s   =   i n p u t ( " 📚   E n t e r   s u b j e c t s   s e p a r a t e d   b y   c o m m a :   " ) . s p l i t ( " , " )  ⏎         d a y s   =   i n t ( i n p u t ( " 🗓 ️   E n t e r   n u m b e r   o f   s t u d y   d a y s :   " ) )  ⏎         h o u r s   =   i n t ( i n p u t ( " ⏱ ️   E n t e r   n u m b e r   o f   h o u r s   p e r   d a y :   " ) )  ⏎         p r i n t ( " \ n 🗓 ️   Y o u r   S t u d y   T i m e   T a b l e : " )  ⏎         f o r   d a y   i n   r a n g e ( 1 ,   d a y s + 1 ) :  ⏎                 p r i n t ( f " D a y   { d a y } : " )  ⏎                 f o r   h   i n   r a n g e ( h o u r s ) :  ⏎                         s u b j e c t   =   r a n d o m . c h o i c e ( s u b j e c t s ) . s t r i p ( )  ⏎                         p r i n t ( f "     H o u r   { h + 1 } :   { s u b j e c t } " )  ⏎                 p r i n t ( " - "   *   3 0 )  ⏎  ⏎ d e f   e x t r a c t _ q u e s t i o n s _ f r o m _ p d f ( p d f _ p a t h ) :  ⏎         i f   n o t   p d f _ l i b _ a v a i l a b l e :  ⏎                 p r i n t ( " ❌   P y M u P D F   n o t   i n s t a l l e d .   P l e a s e   i n s t a l l   i t   w i t h :   p i p   i n s t a l l   p y m u p d f " )  ⏎                 r e t u r n   [ ]  ⏎  ⏎         i m p o r t   f i t z  ⏎         d o c   =   f i t z . o p e n ( p d f _ p a t h )  ⏎         t e x t   =   " "  ⏎         f o r   p a g e   i n   d o c :  ⏎                 t e x t   + =   p a g e . g e t _ t e x t ( )  ⏎  ⏎         #   S i m p l e   r e g e x   t o   f i n d   q u e s t i o n s   e n d i n g   w i t h   ' ? '  ⏎         q u e s t i o n s   =   r e . f i n d a l l ( r ' ( [ A - Z ] [ ^ ? ] * \ ? ) ' ,   t e x t )  ⏎  ⏎         p r i n t ( f " E x t r a c t e d   { l e n ( q u e s t i o n s ) }   q u e s t i o n s   f r o m   P D F   ( s h o w i n g   u p   t o   1 0 ) : " )  ⏎         f o r   i ,   q   i n   e n u m e r a t e ( q u e s t i o n s [ : 1 0 ] ,   1 ) :  ⏎                 p r i n t ( f " Q { i } :   { q . s t r i p ( ) } " )  ⏎         r e t u r n   q u e s t i o n s  ⏎  ⏎ d e f   u p l o a d _ p d f _ a n d _ e x t r a c t ( d a t a ) :  ⏎         p d f _ p a t h   =   i n p u t ( " E n t e r   f u l l   p a t h   o f   P D F   f i l e :   " ) . s t r i p ( )  ⏎         i f   n o t   o s . p a t h . e x i s t s ( p d f _ p a t h ) :  ⏎                 p r i n t ( " ❌   P D F   f i l e   n o t   f o u n d . " )  ⏎                 r e t u r n  ⏎         q u e s t i o n s   =   e x t r a c t _ q u e s t i o n s _ f r o m _ p d f ( p d f _ p a t h )  ⏎         i f   n o t   q u e s t i o n s :  ⏎                 p r i n t ( " ❌   N o   q u e s t i o n s   e x t r a c t e d . " )  ⏎                 r e t u r n  ⏎  ⏎         #   L e t   u s e r   i n p u t   c l a s s   a n d   s u b j e c t   t o   s a v e   e x t r a c t e d   q u e s t i o n s   ( b a s i c )  ⏎         c l a s s _ n a m e   =   i n p u t ( " E n t e r   c l a s s   t o   s a v e   q u e s t i o n s   ( C l a s s   8 / C l a s s   9 / C l a s s   1 0 ) :   " ) . s t r i p ( )  ⏎         s u b j e c t   =   i n p u t ( " E n t e r   s u b j e c t   t o   s a v e   q u e s t i o n s   ( m a t h s / s c i e n c e / s s t / e n g l i s h / c o m p u t e r ) :   " ) . s t r i p ( ) . l o w e r ( )  ⏎         i f   c l a s s _ n a m e   n o t   i n   d a t a   o r   s u b j e c t   n o t   i n   d a t a [ c l a s s _ n a m e ] :  ⏎                 p r i n t ( " ❌   I n v a l i d   c l a s s   o r   s u b j e c t . " )  ⏎                 r e t u r n  ⏎  ⏎         n e w _ i t e m s   =   [ ]  ⏎         f o r   q   i n   q u e s t i o n s :  ⏎                 n e w _ i t e m s . a p p e n d ( {  ⏎                         " q u e s t i o n " :   q . s t r i p ( ) ,  ⏎                         " a n s w e r " :   " A n s w e r   n o t   a v a i l a b l e   y e t . " ,  ⏎                         " e x p l a n a t i o n " :   " N o   e x p l a n a t i o n   a v a i l a b l e . " ,  ⏎                         " c h a p t e r " :   " U n k n o w n " ,  ⏎                         " t a g s " :   [ ]  ⏎                 } )  ⏎  ⏎         d a t a [ c l a s s _ n a m e ] [ s u b j e c t ] . e x t e n d ( n e w _ i t e m s )  ⏎  ⏎         #   S a v e   b a c k   t o   J S O N   f i l e  ⏎         f i l e _ p a t h   =   f " { c l a s s _ n a m e } / { s u b j e c t } . j s o n "  ⏎         w i t h   o p e n ( f i l e _ p a t h ,   ' w ' ,   e n c o d i n g = ' u t f - 8 ' )   a s   f :  ⏎                 j s o n . d u m p ( d a t a [ c l a s s _ n a m e ] [ s u b j e c t ] ,   f ,   i n d e n t = 4 )  ⏎  ⏎         p r i n t ( f " ✅   E x t r a c t e d   q u e s t i o n s   s a v e d   t o   { f i l e _ p a t h } " )  ⏎  ⏎ d e f   m a i n ( ) :  ⏎         p r i n t ( " 📚   W e l c o m e   t o   E d u G e n i u s   -   A I   P o w e r e d   T e a c h e r   S y s t e m " )  ⏎         d a t a   =   l o a d _ a l l _ d a t a ( )  ⏎         p r o g r e s s _ f i l e   =   " p r o g r e s s . j s o n "  ⏎  ⏎         w h i l e   T r u e :  ⏎                 p r i n t ( " " "  ⏎ S e l e c t   a n   O p t i o n :  ⏎ 1 .   A I   D o u b t   S o l v e r  ⏎ 2 .   L e a r n   B y   T o p i c  ⏎ 3 .   P r a c t i c e   Q u i z  ⏎ 4 .   P r o g r e s s   T r a c k e r  ⏎ 5 .   S t u d y   T i m e   T a b l e   G e n e r a t o r  ⏎ 6 .   U p l o a d   P D F   &   E x t r a c t   Q u e s t i o n s  ⏎ 7 .   E x i t  ⏎ " " " )  ⏎                 c h o i c e   =   i n p u t ( " E n t e r   c h o i c e :   " )  ⏎                 i f   c h o i c e   = =   " 1 " :  ⏎                         a i _ d o u b t _ s o l v e r ( d a t a )  ⏎                 e l i f   c h o i c e   = =   " 2 " :  ⏎                         l e a r n _ b y _ t o p i c ( d a t a )  ⏎                 e l i f   c h o i c e   = =   " 3 " :  ⏎                         p r a c t i c e _ q u i z ( d a t a ,   p r o g r e s s _ f i l e )  ⏎                 e l i f   c h o i c e   = =   " 4 " :  ⏎                         v i e w _ p r o g r e s s ( p r o g r e s s _ f i l e )  ⏎                 e l i f   c h o i c e   = =   " 5 " :  ⏎                         g e n e r a t e _ t i m e t a b l e ( )  ⏎                 e l i f   c h o i c e   = =   " 6 " :  ⏎                         u p l o a d _ p d f _ a n d _ e x t r a c t ( d a t a )  ⏎                 e l i f   c h o i c e   = =   " 7 " :  ⏎                         p r i n t ( " 👋   G o o d b y e ! " )  ⏎                         b r e a k  ⏎                 e l s e :  ⏎                         p r i n t ( " ❌   I n v a l i d   c h o i c e .   T r y   a g a i n . " )  ⏎  ⏎ i f   _ _ n a m e _ _   = =   " _ _ m a i n _ _ " :  ⏎         m a i n ( )  ⏎
-[2025-06-16 22:04:02] [  ⏎         {  ⏎                 " q u e s t i o n " :   " W h a t   i s   t h e   v a l u e   o f   π   ( p i ) ? " ,  ⏎                 " a n s w e r " :   " A p p r o x i m a t e l y   3 . 1 4 1 6 " ,  ⏎                 " e x p l a n a t i o n " :   " P i   i s   t h e   r a t i o   o f   a   c i r c l e ' s   c i r c u m f e r e n c e   t o   i t s   d i a m e t e r . " ,  ⏎                 " c h a p t e r " :   " C i r c l e s " ,  ⏎                 " t a g s " :   [ " g e o m e t r y " ,   " c i r c l e s " ,   " p i " ]  ⏎         } ,  ⏎         {  ⏎                 " q u e s t i o n " :   " H o w   d o   y o u   f i n d   t h e   a r e a   o f   a   t r i a n g l e ? " ,  ⏎                 " a n s w e r " :   " A r e a   =   1 / 2   ×   b a s e   ×   h e i g h t " ,  ⏎                 " e x p l a n a t i o n " :   " T h e   a r e a   o f   a   t r i a n g l e   i s   h a l f   t h e   p r o d u c t   o f   i t s   b a s e   a n d   h e i g h t . " ,  ⏎                 " c h a p t e r " :   " T r i a n g l e s " ,  ⏎                 " t a g s " :   [ " g e o m e t r y " ,   " a r e a " ,   " t r i a n g l e s " ]  ⏎         } ,  ⏎         {  ⏎                 " q u e s t i o n " :   " W h a t   i s   a   p r i m e   n u m b e r ? " ,  ⏎                 " a n s w e r " :   " A   n u m b e r   g r e a t e r   t h a n   1   t h a t   h a s   n o   p o s i t i v e   d i v i s o r s   o t h e r   t h a n   1   a n d   i t s e l f . " ,  ⏎                 " e x p l a n a t i o n " :   " P r i m e   n u m b e r s   a r e   n u m b e r s   t h a t   c a n n o t   b e   f o r m e d   b y   m u l t i p l y i n g   t w o   s m a l l e r   n a t u r a l   n u m b e r s . " ,  ⏎                 " c h a p t e r " :   " N u m b e r   S y s t e m s " ,  ⏎                 " t a g s " :   [ " n u m b e r s " ,   " p r i m e " ]  ⏎         }  ⏎         / /   . . .   A d d   m o r e   q u e s t i o n s   u p   t o   1 0 0 0 0 0 +  ⏎ ]  ⏎
-[2025-06-16 22:09:48] i m p o r t   j s o n  ⏎  ⏎ d e f   g e n e r a t e _ d u m m y _ q u e s t i o n s ( f i l e n a m e ,   n u m _ q u e s t i o n s = 1 0 0 0 0 ) :  ⏎         q u e s t i o n s   =   [ ]  ⏎         f o r   i   i n   r a n g e ( 1 ,   n u m _ q u e s t i o n s   +   1 ) :  ⏎                 q u e s t i o n _ d a t a   =   {  ⏎                         " q u e s t i o n " :   f " W h a t   i s   q u e s t i o n   n u m b e r   { i } ? " ,  ⏎                         " a n s w e r " :   f " T h i s   i s   t h e   a n s w e r   f o r   q u e s t i o n   { i } . " ,  ⏎                         " e x p l a n a t i o n " :   f " T h i s   i s   a   d e t a i l e d   e x p l a n a t i o n   f o r   q u e s t i o n   n u m b e r   { i } . " ,  ⏎                         " c h a p t e r " :   " S a m p l e   C h a p t e r " ,  ⏎                         " t a g s " :   [ " s a m p l e " ,   " d u m m y " ,   " t e s t " ]  ⏎                 }  ⏎                 q u e s t i o n s . a p p e n d ( q u e s t i o n _ d a t a )  ⏎  ⏎         w i t h   o p e n ( f i l e n a m e ,   " w " ,   e n c o d i n g = " u t f - 8 " )   a s   f :  ⏎                 j s o n . d u m p ( q u e s t i o n s ,   f ,   i n d e n t = 4 ,   e n s u r e _ a s c i i = F a l s e )  ⏎         p r i n t ( f " { n u m _ q u e s t i o n s }   d u m m y   q u e s t i o n s   s a v e d   t o   { f i l e n a m e } " )  ⏎  ⏎ i f   _ _ n a m e _ _   = =   " _ _ m a i n _ _ " :  ⏎         g e n e r a t e _ d u m m y _ q u e s t i o n s ( " m a t h s _ 1 0 0 0 0 _ q u e s t i o n s . j s o n " )  ⏎
